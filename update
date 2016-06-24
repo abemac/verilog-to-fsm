@@ -1,4 +1,4 @@
 git pull
 git add .
 git commit -am "asdf"
-git push
+git push https://github.com/abemac/verilog-to-fsm.git
