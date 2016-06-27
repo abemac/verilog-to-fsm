@@ -25,10 +25,12 @@ private:
   std::vector<Wire*>* wires_others;
   std::vector<Module*>* modules;
   std::vector<Module*>* modules_ff;
+  std::vector<Module*> stable_order;
   std::vector<std::vector<unsigned long long> > output_file;
   unsigned long long inputs;
   unsigned long long flip_flops;
   void assign_wires();
+  void do_logic_init();
   void do_logic();
 
 };

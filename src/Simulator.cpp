@@ -36,19 +36,17 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
         for(Wire*w : *wires_outputs){
           w->stable=false;
         }
-
-        do_logic();
-        //get flip flop inputs as next state (with current input)
-
-        //FILE<<flip_flops<<","<<inputs<<",";
-        // output_file[flip_flops][inputs]=flip_flops;
+        if(stable_order.size()==0){
+          do_logic_init();
+        }else{
+          do_logic();
+        }
         // unsigned long long output=0;
         // for(Wire * w : *(wires_outputs)){
         //   output<<=1;
         //   output|=w->val;
         // }
         // //FILE<<output<<",";
-        // output_file[line][2]=output;
         unsigned long long next_state=0;
         for(Module* m : *(modules_ff)){
           next_state<<=1;
@@ -100,6 +98,12 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
   }
 
   void Simulator::do_logic(){
+    for(Module* m : stable_order){
+      m->do_logic();
+    }
+  }
+
+  void Simulator::do_logic_init(){
     std::vector<Module*> toDo;
 
     for(Module* m : *(modules)){
@@ -114,6 +118,7 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
       if(do_logic){
         m->do_logic();
         m->output->stable=true;
+        stable_order.push_back(m);
       }else{
         toDo.push_back(m);
       }
@@ -134,6 +139,7 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
         if(do_logic){
           toDo[i]->do_logic();
           toDo[i]->output->stable=true;
+          stable_order.push_back(toDo[i]);
           toDo.erase(toDo.begin()+i);
         }else{
           i++;
