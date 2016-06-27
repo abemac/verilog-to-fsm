@@ -14,21 +14,19 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
 
   }
 
-  void Simulator::simulate(){
+  void Simulator::simulate(std::string output_path){
     if(wires_ff->size()>64 || wires_inputs->size()>64){
       std::cout<<"TOO BIG"<<std::endl;
       return;
     }
     unsigned long long flip_flop_upper_limit =(( unsigned long long )(-1)>>(64-wires_ff->size()));
     unsigned long long inputs_upper_limit =(( unsigned long long )(-1)>>(64-wires_inputs->size()));
-    std::ofstream FILE;
-    FILE.open("output.csv");
-    FILE<<"current state,input,output,next state\n";
     // std::cout<<flip_flops<<std::endl;
     while(flip_flops<=flip_flop_upper_limit){
 
       inputs=0;
       assign_wires();
+      output_file.push_back(std::vector<unsigned long long>());
       while(inputs<=inputs_upper_limit){
         std::cout<<"\e[A**Now simulating circuit... ("<<flip_flops<<"/"<<flip_flop_upper_limit<<"), ("<<
             inputs<<"/"<<inputs_upper_limit<<")"<<std::endl;
@@ -41,26 +39,47 @@ Simulator::Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires
 
         do_logic();
         //get flip flop inputs as next state (with current input)
-        FILE<<flip_flops<<","<<inputs<<",";
-        unsigned long long output=0;
-        for(Wire * w : *(wires_outputs)){
-          output<<=1;
-          output|=w->val;
-        }
-        FILE<<output<<",";
+
+        //FILE<<flip_flops<<","<<inputs<<",";
+        // output_file[flip_flops][inputs]=flip_flops;
+        // unsigned long long output=0;
+        // for(Wire * w : *(wires_outputs)){
+        //   output<<=1;
+        //   output|=w->val;
+        // }
+        // //FILE<<output<<",";
+        // output_file[line][2]=output;
         unsigned long long next_state=0;
         for(Module* m : *(modules_ff)){
           next_state<<=1;
           next_state|=m->inputs[0]->val;
         }
-        FILE<<next_state<<"\n";
-
+        //FILE<<next_state<<"\n";
+        output_file[flip_flops].push_back(next_state);
         inputs++;
         assign_wires();
+
 
       }
       flip_flops++;
       assign_wires();
+    }
+    //POST PROCESSING
+
+    //WRITE TO FILE FROM VECTOR HERE
+    std::ofstream FILE;
+    FILE.open(output_path);
+    //FILE<<"current state,input,output,next state\n";
+
+    for (size_t i = 0; i < output_file.size(); i++) {
+      for (size_t j = 0; j < output_file[i].size(); j++) {
+        FILE<<output_file[i][j];
+        if(j!=(output_file[i].size()-1)){
+          FILE<<",";
+        }else{
+          FILE<<"\n";
+        }
+      }
     }
 
     FILE.close();

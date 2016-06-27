@@ -24,11 +24,16 @@ std::vector<Module*> modules_ff;
 std::vector<std::vector<std::string> > src_file;
 
 std::string path;
+std::string output_path;
 
 void read_in_file();
 
 int main(int argc, char* argv[]){
   path=argv[1];
+  output_path.assign(path.substr(8,path.size()-8));
+  output_path[output_path.size()-1]='c';
+  output_path.push_back('s');
+  output_path.push_back('v');
   system("setterm -cursor off");
   std::cout<<"\n**Reading in circuit from file..."<<std::endl;
   read_in_file();
@@ -78,7 +83,7 @@ int main(int argc, char* argv[]){
   }std::cout<<""<<std::endl;
   std::cout<<"**Now simulating circuit... "<<std::endl;
   Simulator s = Simulator(&wires_inputs,&wires_ff,&wires_outputs,&wires_others,&modules,&modules_ff);
-  s.simulate();
+  s.simulate(output_path);
   for(int i=0;i<80;i++){
     std::cout<<"-";
   }std::cout<<"\n"<<std::endl;

@@ -17,7 +17,7 @@ public:
   Simulator(std::vector<Wire*>* wires_inputs_,std::vector<Wire*>* wires_ff_,
       std::vector<Wire*>* wires_outputs_,std::vector<Wire*>* wires_others_,
       std::vector<Module*>* modules_,std::vector<Module*>* modules_ff_);
-  void simulate();
+  void simulate(std::string output_path);
 private:
   std::vector<Wire*>* wires_inputs; //enter wires in order encountered
   std::vector<Wire*>* wires_ff;//flip_flop outputs
@@ -25,6 +25,7 @@ private:
   std::vector<Wire*>* wires_others;
   std::vector<Module*>* modules;
   std::vector<Module*>* modules_ff;
+  std::vector<std::vector<unsigned long long> > output_file;
   unsigned long long inputs;
   unsigned long long flip_flops;
   void assign_wires();
