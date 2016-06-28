@@ -29,15 +29,7 @@ int main(int argc, char* argv[]){
   output_path.pop_back();
   output_path.pop_back();
   output_path.pop_back();
-  output_path.push_back('_');
-  output_path.push_back('s');
-  output_path.push_back('i');
-  output_path.push_back('m');
-  output_path.push_back('p');
-  output_path.push_back('.');
-  output_path.push_back('c');
-  output_path.push_back('s');
-  output_path.push_back('v');
+  output_path.append("_simp.csv");
   read_in_file();
   eliminate_dup_cols();
   del_unreachable_states();
