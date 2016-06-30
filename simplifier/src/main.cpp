@@ -10,7 +10,7 @@
 
 
 
-
+void iterate_until_no_change();
 void read_in_file();
 void eliminate_dup_cols();
 void eliminate_dup_rows();
@@ -18,7 +18,6 @@ void del_unreachable_states();
 void write_file();
 void decrease_all_above(unsigned long long k);
 void replace(unsigned long long k,unsigned long long l);
-
 
 std::string path;
 std::string output_path;
@@ -50,6 +49,9 @@ int main(int argc, char* argv[]){
 
 }
 
+void iterate_until_no_change(){
+  
+}
 
 void eliminate_dup_rows(){
   for(unsigned long long i =0;i<src_file.size()-1;i++){//i is the compare to row index
