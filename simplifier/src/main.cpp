@@ -13,8 +13,10 @@
 
 void read_in_file();
 void eliminate_dup_cols();
+void eliminate_dup_rows();
 void del_unreachable_states();
 void write_file();
+void decrease_all_above(unsigned long long i);
 
 
 
@@ -31,12 +33,36 @@ int main(int argc, char* argv[]){
   output_path.pop_back();
   output_path.append("_simp.csv");
   read_in_file();
-  eliminate_dup_cols();
+  std::cout<<"deleting unreachable states..."<<std::endl;
   del_unreachable_states();
+
+  std::cout<<"eliminating duplicate columns..."<<std::endl;
+  eliminate_dup_cols();
+
+
+
 
 
   write_file();
   std::cout<<output_path<<" outputed"<<std::endl;
+
+}
+
+
+void eliminate_dup_rows(){
+  
+}
+
+
+
+void decrease_all_above(unsigned long long i){
+  for(size_t i=0;i<src_file.size();i++){
+    for(size_t j=0;j<src_file[j].size();j++){
+      if(src_file[i][j]>i){
+        src_file[i][j]--;
+      }
+    }
+  }
 
 }
 void write_file(){
@@ -57,6 +83,7 @@ void write_file(){
 }
 
 
+//also needs to do bookeeping for re-assigning state names
 void del_unreachable_states(){
   bool first_deleted=false;
   std::unordered_set< unsigned long long> reachable;
@@ -73,6 +100,7 @@ void del_unreachable_states(){
         first_deleted=true;
       }else{
         src_file.erase(src_file.begin()+i);
+        decrease_all_above(i);
       }
 
     }
