@@ -31,6 +31,8 @@ int main(int argc, char* argv[]){
   output_path.pop_back();
   output_path.pop_back();
   output_path.append("_simp.csv");
+  system("setterm -cursor off");
+  std::cout<<"reading in file..."<<std::endl;
   read_in_file();
   std::cout<<"deleting unreachable states..."<<std::endl;
   del_unreachable_states();
@@ -41,23 +43,74 @@ int main(int argc, char* argv[]){
   std::cout<<"eliminating duplicate rows..."<<std::endl;
   eliminate_dup_rows();
 
-
-
+  std::cout<<"checking if fully simplified..."<<std::endl;
+  std::cout<<""<<std::endl;
+  iterate_until_no_change();
 
   write_file();
   std::cout<<output_path<<" outputed"<<std::endl;
 
+  system("setterm -cursor on");
 }
 
 void iterate_until_no_change(){
-  
+  bool change = false;
+  //columns:
+  for(unsigned long long i=0;i<src_file[0].size()-1;i++){//i is the column index
+    for(unsigned long long j=i+1;j<src_file[0].size();j++){//j is index of all cols to the right
+      bool same=true;
+      for(unsigned long long k=0;k<src_file.size() && same;k++){//k is the row index for each col to compare
+        if(src_file[k][i] != src_file[k][j]){
+          same=false;
+        }
+
+      }
+
+      if(same){
+        for(unsigned long long l=0;l<src_file.size();l++){
+          src_file[l].erase(src_file[l].begin()+j);
+          change=true;
+        }
+        j--;
+      }
+    }
+    std::cout<<"\e[Aeliminating duplicate columns...("<<i<<"/"<<src_file[0].size()-1<<")        "<<std::endl;
+  }
+
+
+  bool change2=false;
+  for(unsigned long long i =0;i<src_file.size()-1;i++){//i is the compare to row index
+    for(unsigned long long j=i+1;j<src_file.size();j++){//j is the index of comparison
+      bool same=true;
+      for(unsigned long long k=0;k<src_file[j].size() && same;k++){//k is the column index
+        if(src_file[i][k]!=src_file[j][k]){
+          same=false;
+        }
+      }
+      if(same){
+        src_file.erase(src_file.begin()+j);
+        replace(j,i);
+        decrease_all_above(j);
+        j--;
+        change2=true;
+      }
+    }
+    std::cout<<"\e[Aeliminating duplicate rows...("<<i<<"/"<<src_file.size()-1<<")        "<<std::endl;
+  }
+
+  if(change || change2){
+    iterate_until_no_change();
+  }
+
+
+
 }
 
 void eliminate_dup_rows(){
   for(unsigned long long i =0;i<src_file.size()-1;i++){//i is the compare to row index
     for(unsigned long long j=i+1;j<src_file.size();j++){//j is the index of comparison
       bool same=true;
-      for(unsigned long long k=0;k<src_file[j].size();k++){//k is the column index
+      for(unsigned long long k=0;k<src_file[j].size() && same;k++){//k is the column index
         if(src_file[i][k]!=src_file[j][k]){
           same=false;
         }
@@ -69,6 +122,7 @@ void eliminate_dup_rows(){
         j--;
       }
     }
+    std::cout<<"\e[Aeliminating duplicate rows...("<<i<<"/"<<src_file.size()-1<<")      "<<std::endl;
   }
 }
 
@@ -116,14 +170,18 @@ void del_unreachable_states(){
   bool first_deleted=true;
   unsigned long long num_deleted=0;
   std::unordered_set< unsigned long long> reachable;
+  unsigned long long ic=0;
   for(std::vector<unsigned long long> v : src_file ){
+    std::cout<<"\e[Adeleting unreachable states...("<<ic<<"/"<<src_file.size()<<"), (0/?)    "<<std::endl;
     for(unsigned long long ull: v){
       reachable.insert(ull);
     }
+    ic++;
   }
   // std::cout<<reachable.count(1)<<std::endl;
   unsigned long long i=0;
-  while(i<2){
+  while(i<src_file.size()){
+    std::cout<<"\e[Adeleting unreachable states...("<<ic<<"/"<<ic<<"),("<<i<<"/"<<src_file.size()<<")    "<<std::endl;
     if(!reachable.count(i)){
       if(!first_deleted){
         first_deleted=true;
@@ -159,6 +217,7 @@ void eliminate_dup_cols(){
         j--;
       }
     }
+    std::cout<<"\e[Aeliminating duplicate columns...("<<i<<"/"<<src_file[0].size()-1<<")      "<<std::endl;
   }
 
 }
