@@ -5,4 +5,4 @@ LFLAGS = -Wall $(DEBUG)
 CFLAGS = $(LFLAGS) -c
 
 output: ../src/main.cpp
-		$(CC) $(LFLAGS) ../src/main.cpp $(OBJS) -o ../run/linux_output
+		$(CC) $(LFLAGS) ../src/main.cpp $(OBJS) -o ../run/simplify
