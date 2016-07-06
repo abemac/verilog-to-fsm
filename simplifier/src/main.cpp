@@ -117,7 +117,7 @@ void eliminate_dup_rows(){
       }
       if(same){
         src_file.erase(src_file.begin()+j);
-        replace(j,i);
+        replace(j,i);//combine this line and line below??***********************
         decrease_all_above(j);
         j--;
       }
@@ -166,6 +166,7 @@ void write_file(){
 
 
 //also needs to do bookeeping for re-assigning state names
+//use ll to make faster?
 void del_unreachable_states(){
   bool first_deleted=true;
   unsigned long long num_deleted=0;
