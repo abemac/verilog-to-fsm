@@ -165,7 +165,7 @@ void write_file(){
 }
 
 
-//also needs to do bookeeping for re-assigning state names
+//does bookeeping for re-assigning state names
 //use ll to make faster?
 void del_unreachable_states(){
   bool first_deleted=true;     //no initial state if true
