@@ -168,7 +168,7 @@ void write_file(){
 //also needs to do bookeeping for re-assigning state names
 //use ll to make faster?
 void del_unreachable_states(){
-  bool first_deleted=true;     //no initial state
+  bool first_deleted=true;     //no initial state if true
   unsigned long long num_deleted=0;
   std::unordered_set< unsigned long long> reachable;
   unsigned long long ic=0;
