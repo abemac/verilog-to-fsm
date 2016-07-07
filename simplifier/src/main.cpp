@@ -7,8 +7,8 @@
 #include <fstream>
 #include <unordered_set>
 #include <algorithm>
-
-
+#include <list>
+#include <iterator>
 
 void iterate_until_no_change();
 void read_in_file();
@@ -20,11 +20,16 @@ void decrease_all_above(unsigned long long k);
 void replace(unsigned long long k,unsigned long long l);
 void resetIds();
 void applyIdsToSrcFile();
+void setLL();
+void LL_to_src();
 
 std::string path;
 std::string output_path;
 std::vector<std::vector<unsigned long long> > src_file;
+std::vector<unsigned long long> init_state;
 std::vector<unsigned long long> ids;
+std::list<std::vector<unsigned long long> > src_file_ll;
+std::list<std::vector<unsigned long long> >::iterator itr;
 
 int main(int argc, char* argv[]){
   path=argv[1];
@@ -56,6 +61,19 @@ int main(int argc, char* argv[]){
   std::cout<<output_path<<" outputed"<<std::endl;
 
   system("setterm -cursor on");
+}
+
+void setLL(){
+  src_file_ll.clear();
+  for(std::vector<unsigned long long > v : src_file){
+    src_file_ll.push_back(v);
+  }
+}
+void LL_to_src(){
+  src_file.clear();
+  for(std::vector<unsigned long long > v : src_file_ll){
+    src_file.push_back(v);
+  }
 }
 
 void resetIds(){
@@ -187,7 +205,6 @@ void write_file(){
 
 //does bookeeping for re-assigning state names
 void del_unreachable_states(){
-  bool first_deleted=true;     //no initial state if true
   unsigned long long num_deleted=0;
   std::unordered_set< unsigned long long> reachable;
   unsigned long long ic=0;
@@ -200,21 +217,21 @@ void del_unreachable_states(){
   }
   // std::cout<<reachable.count(1)<<std::endl;
   unsigned long long i=0;
+  setLL();
+  itr=src_file_ll.begin();
   while(i<src_file.size()){
     std::cout<<"\e[Adeleting unreachable states...("<<ic<<"/"<<ic<<"),("<<i<<"/"<<src_file.size()<<")    "<<std::endl;
     if(!reachable.count(i)){
-      if(!first_deleted){
-        first_deleted=true;
-      }else{
-        src_file.erase(src_file.begin()+i-num_deleted);
-        decrease_all_above(i);
-        num_deleted++;
-      }
-
+      itr=src_file_ll.erase(itr);
+      decrease_all_above(i-num_deleted);
+      num_deleted++;
+    }else{
+      ++itr;
     }
     i++;
-  }
 
+  }
+  LL_to_src();
 
 
 }
