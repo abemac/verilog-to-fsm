@@ -18,10 +18,13 @@ void del_unreachable_states();
 void write_file();
 void decrease_all_above(unsigned long long k);
 void replace(unsigned long long k,unsigned long long l);
+void resetIds();
+void applyIdsToSrcFile();
 
 std::string path;
 std::string output_path;
 std::vector<std::vector<unsigned long long> > src_file;
+std::vector<unsigned long long> ids;
 
 int main(int argc, char* argv[]){
   path=argv[1];
@@ -34,6 +37,7 @@ int main(int argc, char* argv[]){
   system("setterm -cursor off");
   std::cout<<"reading in file..."<<std::endl;
   read_in_file();
+  resetIds();
   std::cout<<"deleting unreachable states..."<<std::endl;
   del_unreachable_states();
 
@@ -46,11 +50,46 @@ int main(int argc, char* argv[]){
   std::cout<<"checking if fully simplified..."<<std::endl;
   std::cout<<""<<std::endl;
   iterate_until_no_change();
+  applyIdsToSrcFile();
 
   write_file();
   std::cout<<output_path<<" outputed"<<std::endl;
 
   system("setterm -cursor on");
+}
+
+void resetIds(){
+  ids.clear();
+  ids = std::vector<unsigned long long>( src_file.size());
+  for(unsigned long long i = 0;i<src_file.size();i++){
+    ids[i]=i;
+  }
+
+}
+
+
+void applyIdsToSrcFile(){
+  for(unsigned long long i =0 ;i<src_file.size();i++){
+    for(unsigned long long j=0;j<src_file[i].size();j++){
+      src_file[i][j] = ids[src_file[i][j]];
+    }
+  }
+}
+void decrease_all_above(unsigned long long k){
+  for(unsigned long long j=0;j<ids.size();j++){
+    if(ids[j] > k){
+      ids[j]--;
+    }
+  }
+
+}
+//replace all k with l
+void replace(unsigned long long k,unsigned long long l){
+  for(unsigned long long j=0;j<ids.size();j++){
+    if(ids[j] == k){
+      ids[j]=l;
+    }
+  }
 }
 
 void iterate_until_no_change(){
@@ -60,7 +99,7 @@ void iterate_until_no_change(){
     for(unsigned long long j=i+1;j<src_file[0].size();j++){//j is index of all cols to the right
       bool same=true;
       for(unsigned long long k=0;k<src_file.size() && same;k++){//k is the row index for each col to compare
-        if(src_file[k][i] != src_file[k][j]){
+        if(ids[src_file[k][i]] != ids[src_file[k][j]]){
           same=false;
         }
 
@@ -83,7 +122,7 @@ void iterate_until_no_change(){
     for(unsigned long long j=i+1;j<src_file.size();j++){//j is the index of comparison
       bool same=true;
       for(unsigned long long k=0;k<src_file[j].size() && same;k++){//k is the column index
-        if(src_file[i][k]!=src_file[j][k]){
+        if(ids[src_file[i][k]]!=ids[src_file[j][k]]){
           same=false;
         }
       }
@@ -111,7 +150,7 @@ void eliminate_dup_rows(){
     for(unsigned long long j=i+1;j<src_file.size();j++){//j is the index of comparison
       bool same=true;
       for(unsigned long long k=0;k<src_file[j].size() && same;k++){//k is the column index
-        if(src_file[i][k]!=src_file[j][k]){
+        if(ids[src_file[i][k]]!=ids[src_file[j][k]]){
           same=false;
         }
       }
@@ -126,27 +165,8 @@ void eliminate_dup_rows(){
   }
 }
 
-//replace all k with l
-void replace(unsigned long long k,unsigned long long l){
-  for(unsigned long long i=0;i<src_file.size();i++){
-    for(unsigned long long j=0;j<src_file[i].size();j++){
-      if(src_file[i][j]==k){
-        src_file[i][j]=l;
-      }
-    }
-  }
-}
 
-void decrease_all_above(unsigned long long k){
-  for(unsigned long long i=0;i<src_file.size();i++){
-    for(unsigned long long j=0;j<src_file[i].size();j++){
-      if(src_file[i][j]>k){
-        src_file[i][j]--;
-      }
-    }
-  }
 
-}
 void write_file(){
   std::ofstream FILE;
   FILE.open(output_path);
@@ -204,7 +224,7 @@ void eliminate_dup_cols(){
     for(unsigned long long j=i+1;j<src_file[0].size();j++){//j is index of all cols to the right
       bool same=true;
       for(unsigned long long k=0;k<src_file.size() && same;k++){//k is the row index for each col to compare
-        if(src_file[k][i] != src_file[k][j]){
+        if(ids[src_file[k][i]] != ids[src_file[k][j]]){
           same=false;
         }
 
