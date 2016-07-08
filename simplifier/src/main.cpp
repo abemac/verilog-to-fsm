@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
   std::set<unsigned long long> s( src_file[0].begin(), src_file[0].end() );
   src_file[0].assign( s.begin(), s.end() );
   write_file();
-  std::cout<<output_path<<" outputed"<<std::endl;
+  std::cout<<"files outputed.  complete."<<std::endl;
 
   system("setterm -cursor on");
 }
