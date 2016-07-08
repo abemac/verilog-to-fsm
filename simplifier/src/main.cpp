@@ -57,19 +57,16 @@ int main(int argc, char* argv[]){
   std::cout<<""<<std::endl;
   iterate_until_no_change();
 
-  if(init_state.size()==0){
-    init_state=std::vector<unsigned long long> (src_file[0].size());
-    for(unsigned long long n=0;n<init_state.size();n++){
-      init_state[n]=-1;
-    }
-  }else{
+  if(init_state.size()!=0){
     for(unsigned long long p=0;p<ids.size();p++){
        ids[p]++;
      }
+
+     src_file.insert(src_file.begin(),init_state);
   }
 
 
-  src_file.insert(src_file.begin(),init_state);
+
   applyIdsToSrcFile();
   std::set<unsigned long long> s( src_file[0].begin(), src_file[0].end() );
   src_file[0].assign( s.begin(), s.end() );
@@ -216,6 +213,20 @@ void write_file(){
   }
 
   FILE.close();
+
+  std::ofstream DATA;
+  DATA.open(output_path.append(".data"));
+  DATA<<"Number of states: "<<src_file.size()<<"\n";
+  if(init_state.size()!=0){
+    if(src_file.size()>1){
+      DATA<<"Number of inputs: "<<src_file[1].size()<<"\n";
+    }
+    DATA<<"Initial state: state 0"<<"\n";
+  }else{
+    DATA<<"Number of inputs: "<<src_file[0].size()<<"\n";
+    DATA<<"Initial state: None"<<"\n";
+  }
+  DATA.close();
 }
 
 
