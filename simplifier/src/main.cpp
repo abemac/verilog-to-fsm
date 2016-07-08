@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <list>
 #include <iterator>
+#include <set>
 
 void iterate_until_no_change();
 void read_in_file();
@@ -55,8 +56,23 @@ int main(int argc, char* argv[]){
   std::cout<<"checking if fully simplified..."<<std::endl;
   std::cout<<""<<std::endl;
   iterate_until_no_change();
-  applyIdsToSrcFile();
 
+  if(init_state.size()==0){
+    init_state=std::vector<unsigned long long> (src_file[0].size());
+    for(unsigned long long n=0;n<init_state.size();n++){
+      init_state[n]=-1;
+    }
+  }else{
+    for(unsigned long long p=0;p<ids.size();p++){
+       ids[p]++;
+     }
+  }
+
+
+  src_file.insert(src_file.begin(),init_state);
+  applyIdsToSrcFile();
+  std::set<unsigned long long> s( src_file[0].begin(), src_file[0].end() );
+  src_file[0].assign( s.begin(), s.end() );
   write_file();
   std::cout<<output_path<<" outputed"<<std::endl;
 
@@ -205,7 +221,6 @@ void write_file(){
 
 //does bookeeping for re-assigning state names
 void del_unreachable_states(){
-  unsigned long long num_deleted=0;
   std::unordered_set< unsigned long long> reachable;
   unsigned long long ic=0;
   for(std::vector<unsigned long long> v : src_file ){
@@ -223,15 +238,65 @@ void del_unreachable_states(){
     std::cout<<"\e[Adeleting unreachable states...("<<ic<<"/"<<ic<<"),("<<i<<"/"<<src_file.size()<<")    "<<std::endl;
     if(!reachable.count(i)){
       itr=src_file_ll.erase(itr);
-      decrease_all_above(i-num_deleted);
-      num_deleted++;
+      decrease_all_above(ids[i]);
+      ids[i]=-1;
+      if(init_state.size()==0){
+        bool onlyPointsToSelf=true;
+        for(unsigned long long ull : src_file[i]){
+          if(ull!=i){
+            onlyPointsToSelf=false;
+            break;
+          }
+        }
+        if(!onlyPointsToSelf){
+          init_state=src_file[i];
+        }
+      }else{
+        //if less pointers, re-assign initial state
+        bool onlyPointsToSelf=true;
+        for(unsigned long long ull : src_file[i]){
+          if(ull!=i){
+            onlyPointsToSelf=false;
+            break;
+          }
+        }
+        if(!onlyPointsToSelf){
+          std::unordered_set<unsigned long long> current;
+          std::unordered_set<unsigned long long> newstate;
+          for(unsigned long long b=0;b<src_file[i].size();b++){
+            if(src_file[i][b]!=i){
+              newstate.insert(src_file[i][b]);
+            }
+            if(init_state[b]!=i){
+              current.insert(init_state[b]);
+            }
+          }
+
+          if(newstate.size() < current.size()){
+            init_state=src_file[i];
+          }
+        }
+      }
+
     }else{
       ++itr;
     }
     i++;
 
   }
+
+
   LL_to_src();
+  // if(init_state.size()==0){
+  //   init_state=std::vector<unsigned long long> (src_file[0].size());
+  //   for(unsigned long long n=0;n<init_state.size();n++){
+  //     init_state[n]=-1;
+  //   }
+  // }
+  // src_file.insert(src_file.begin(),init_state);
+  //  for(unsigned long long p=0;p<ids.size();p++){
+  //    ids[p]++;
+  //  }
 
 
 }
