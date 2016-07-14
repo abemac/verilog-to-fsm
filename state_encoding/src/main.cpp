@@ -19,7 +19,7 @@ PRIORITIZED ADJACENT
 #include <string>
 #include <fstream>
 
-void read_in_file();
+void read_in_files();
 void getEdges();
 
 std::vector<std::vector<unsigned long long> > src_file;
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
   input_freqs_path="input_data/";
   input_freqs_path.append(argv[1]);
   input_freqs_path.append(".inputdata");
-  read_in_file();
+  read_in_files();
   // for(std::vector<unsigned long long > v : src_file){
   //   for(unsigned long long u: v){
   //     std::cout<<u<<" ";
@@ -86,7 +86,7 @@ void getEdges(){
 
 }
 
-void read_in_file(){
+void read_in_files(){
   std::ifstream FILE(path);
   std::string str;
 
@@ -105,6 +105,18 @@ void read_in_file(){
   }
 
   FILE.close();
+
+  input_freqs=std::vector<double>(src_file[1].size());
+  std::ifstream FILE2 (input_freqs_path);
+
+  while(std::getline(FILE2,str)){
+    int input=std::stoi(str.substr(0,1),nullptr,10);
+    double freq=std::stod(str.substr(2,str.size()-2),nullptr);
+    input_freqs[input]=freq;
+
+  }
+  FILE2.close();
+
 
 
 }
