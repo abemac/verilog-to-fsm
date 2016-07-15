@@ -10,10 +10,12 @@ void read_in_file();
 void buildGraph();
 void BFS();
 unsigned long long getBestNextEncoding(unsigned long long current_enc);
+void createCodeVector();
 
 std::vector<std::vector<unsigned long long> > src_file;
 std::string path;
 std::string output_path;
+std::vector<bool> usedCodes;
 
 struct Node{
   unsigned long long val;
@@ -23,6 +25,15 @@ struct Node{
   unsigned long long encoding;
 };
 Node* getNode(unsigned long long i);
+
+struct Code{
+  unsigned long long val;
+  bool used;
+}
+struct CodeLevel{
+  std::vector<Code*> codes;
+  
+}
 
 std::vector<Node*> vertices;
 
@@ -72,6 +83,7 @@ void BFS(){
   //of the graph will never be reached by the initial state
 
 }
+
 
 unsigned long long getBestNextEncoding(unsigned long long current_enc){
 
