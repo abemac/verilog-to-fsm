@@ -1,102 +1,125 @@
 
-/*
-
-MINIMUM BIT CHANGE
-•use input data to get frequency of input
-•find frequency of each edge
-•order states by number of unique pointers to others states
-•choose state with most pointers -assign arbitrary code
-•give one-off code to each of the states it points to if it doesn't already
-    have a code
-•repeat until all states have codes
-
-PRIORITIZED ADJACENT
-•
-
-*/
 #include <vector>
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <set>
+#include <list>
 
-void read_in_files();
-void getEdges();
+void read_in_file();
+void buildGraph();
+void BFS();
+unsigned long long getBestNextEncoding(unsigned long long current_enc);
 
 std::vector<std::vector<unsigned long long> > src_file;
 std::string path;
-std::string input_freqs_path;
 std::string output_path;
-struct Edge{
-  unsigned long long start;
-  unsigned long long end;
-  unsigned long long count;
-  unsigned long long input;
-  double freq;
-  double input_freq;
+
+struct Node{
+  unsigned long long val;
+  std::vector<Node*> adj;
+  bool visited;
+  Node(unsigned long long i){val=i;}
+  unsigned long long encoding;
 };
-std::vector<Edge*> edges;
-std::vector<double> input_freqs;
+Node* getNode(unsigned long long i);
+
+std::vector<Node*> vertices;
+
+
 
 int main(int argc, char* argv[]){
   path="../complete/";
   path.append(argv[1]);
-  input_freqs_path="input_data/";
-  input_freqs_path.append(argv[1]);
-  input_freqs_path.append(".inputdata");
-  read_in_files();
+  read_in_file();
   // for(std::vector<unsigned long long > v : src_file){
   //   for(unsigned long long u: v){
   //     std::cout<<u<<" ";
   //   }
   //   std::cout<<""<<std::endl;
   // }
-  getEdges();
-
+  buildGraph();
 
 }
 
 
-void getEdges(){
-  std::vector< std::vector<int> > inserted;
+void BFS(){
+  for(Node * v : vertices){
+    v->visited=false;
+  }
+  std::list<Node*> queue;
+
+  queue.push_back(vertices[0]);
+  vertices[0]->visited=true;
+  vertices[0]->encoding=0;
+  vertices[0]->visited=true;
+
+  while(queue.size()!=0){
+    Node * n = queue.front();
+
+    for(Node* n2 : n->adj){
+      if(n2->visited==false){
+        n2->encoding = getBestNextEncoding(n2->encoding);
+        n2->visited =true;
+        queue.push_back(n2);
+      }
+    }
+    queue.pop_front();
+  }
+
+
+  //no need to repeat for univisted vertices, because independent portions
+  //of the graph will never be reached by the initial state
+
+}
+
+unsigned long long getBestNextEncoding(unsigned long long current_enc){
+
+}
+
+Node* getNode(unsigned long long i){
+  for( Node* n : vertices){
+    if(n->val == i){
+      return n;
+    }
+  }
+  //otherwise, create node
+  Node * n2=new Node(i);
+  vertices.push_back(n2);
+  return n2;
+}
+
+
+void buildGraph(){
+  //first, cut down duplicate edges in matrix
   for(unsigned long long i=0;i<src_file.size();i++){
-    inserted.push_back(std::vector<int>(src_file.size()));
-    for(unsigned long long h = 0;h<inserted.back().size();h++){
-      inserted.back()[h]=-1;
+    std::set<unsigned long long> s( src_file[i].begin(), src_file[i].end() );
+    src_file[i].assign( s.begin(), s.end() );
+  }
+  //next, create a vertex for each state and add its edges to its
+  //adjacent list
+
+  for(unsigned long long i=0;i<src_file.size();i++){
+    Node * n = getNode(i);
+    for(unsigned long long u : src_file[i]){
+      (n->adj).push_back(getNode(u));
     }
+
+
   }
-
-  for(unsigned long long j=0;j<src_file.size();j++){
-    for(unsigned long long k=0;k<src_file[j].size();k++){
-      if(j==0){
-        //do nothing because is initial state
-      }
-      else if(inserted[j][src_file[j][k]]==-1){
-        Edge* e = new Edge();
-        e->start=j;
-        e->end=src_file[j][k];
-        e->count=1;
-        e->input_freq=input_freqs[k];
-        inserted[e->start][e->end]=edges.size();
-        //inserted[src_file[j][k]][j]=edges.size();
-        edges.push_back(e);
-      }else{
-        edges[inserted[j][src_file[j][k]]]->count++;
-        edges[inserted[j][src_file[j][k]]]->input_freq+=input_freqs[k];
-      }
-    }
-  }
-
-  //frequency calculation, with input frequency taken into account
-  //STOPPED HERE, NEED TO FIGURE OUT PROBABLITY OF EACH EDGE
+  // for(Node * n : vertices){
+  //   std::cout<<(n->val)<<": ";
+  //    for(Node * n2 : n->adj){
+  //      std::cout<<(n2->val)<<" ";
+  //    }
+  //   std::cout<<std::endl;
+  // }
 
 
-  for(Edge* e : edges){
-    std::cout<<"{"<<e->start<<","<<e->end<<"} Count:"<<e->count<<" freq:"<<e->input_freq<<std::endl;
-  }
 
 }
 
-void read_in_files(){
+void read_in_file(){
   std::ifstream FILE(path);
   std::string str;
 
@@ -116,16 +139,6 @@ void read_in_files(){
 
   FILE.close();
 
-  input_freqs=std::vector<double>(src_file[1].size());
-  std::ifstream FILE2 (input_freqs_path);
-
-  while(std::getline(FILE2,str)){
-    int input=std::stoi(str.substr(0,1),nullptr,10);
-    double freq=std::stod(str.substr(2,str.size()-2),nullptr);
-    input_freqs[input]=freq;
-
-  }
-  FILE2.close();
 
 
 

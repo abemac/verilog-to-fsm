@@ -1,14 +1,31 @@
 
+
+/*
+
+MINIMUM BIT CHANGE
+•use input data to get frequency of input
+•find frequency of each edge
+•order states by number of unique pointers to others states
+•choose state with most pointers -assign arbitrary code
+•give one-off code to each of the states it points to if it doesn't already
+    have a code
+•repeat until all states have codes
+
+PRIORITIZED ADJACENT
+•
+
+*/
 #include <vector>
 #include <iostream>
 #include <string>
 #include <fstream>
 
-void read_in_file();
+void read_in_files();
 void getEdges();
 
 std::vector<std::vector<unsigned long long> > src_file;
 std::string path;
+std::string input_freqs_path;
 std::string output_path;
 struct Edge{
   unsigned long long start;
@@ -19,11 +36,15 @@ struct Edge{
   double input_freq;
 };
 std::vector<Edge*> edges;
+std::vector<double> input_freqs;
 
 int main(int argc, char* argv[]){
   path="../complete/";
   path.append(argv[1]);
-  read_in_file();
+  input_freqs_path="input_data/";
+  input_freqs_path.append(argv[1]);
+  input_freqs_path.append(".inputdata");
+  read_in_files();
   // for(std::vector<unsigned long long > v : src_file){
   //   for(unsigned long long u: v){
   //     std::cout<<u<<" ";
@@ -66,6 +87,9 @@ void getEdges(){
     }
   }
 
+  //frequency calculation, with input frequency taken into account
+  //STOPPED HERE, NEED TO FIGURE OUT PROBABLITY OF EACH EDGE
+
 
   for(Edge* e : edges){
     std::cout<<"{"<<e->start<<","<<e->end<<"} Count:"<<e->count<<" freq:"<<e->input_freq<<std::endl;
@@ -73,7 +97,7 @@ void getEdges(){
 
 }
 
-void read_in_file(){
+void read_in_files(){
   std::ifstream FILE(path);
   std::string str;
 
@@ -93,6 +117,16 @@ void read_in_file(){
 
   FILE.close();
 
+  input_freqs=std::vector<double>(src_file[1].size());
+  std::ifstream FILE2 (input_freqs_path);
+
+  while(std::getline(FILE2,str)){
+    int input=std::stoi(str.substr(0,1),nullptr,10);
+    double freq=std::stod(str.substr(2,str.size()-2),nullptr);
+    input_freqs[input]=freq;
+
+  }
+  FILE2.close();
 
 
 
