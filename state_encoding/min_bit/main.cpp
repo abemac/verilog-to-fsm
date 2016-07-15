@@ -32,6 +32,7 @@ struct Edge{
   unsigned long long count;
   unsigned long long input;
   double freq;
+  double input_freq;
 };
 std::vector<Edge*> edges;
 std::vector<double> input_freqs;
@@ -54,7 +55,6 @@ int main(int argc, char* argv[]){
 
 }
 
-///start ::  get doubles from .inputdata and incorperate into setting freqencies
 
 void getEdges(){
   std::vector< std::vector<int> > inserted;
@@ -67,21 +67,31 @@ void getEdges(){
 
   for(unsigned long long j=0;j<src_file.size();j++){
     for(unsigned long long k=0;k<src_file[j].size();k++){
-      if(inserted[j][src_file[j][k]]==-1){
+      if(j==0){
+        //do nothing because is initial state
+      }
+      else if(inserted[j][src_file[j][k]]==-1){
         Edge* e = new Edge();
         e->start=j;
         e->end=src_file[j][k];
         e->count=1;
-        inserted[j][src_file[j][k]]=edges.size();
+        e->input_freq=input_freqs[k];
+        inserted[e->start][e->end]=edges.size();
         //inserted[src_file[j][k]][j]=edges.size();
         edges.push_back(e);
       }else{
         edges[inserted[j][src_file[j][k]]]->count++;
+        edges[inserted[j][src_file[j][k]]]->input_freq+=input_freqs[k];
       }
     }
   }
+
+  //frequency calculation, with input frequency taken into account
+  //STOPPED HERE, NEED TO FIGURE OUT PROBABLITY OF EACH EDGE
+
+
   for(Edge* e : edges){
-    std::cout<<"{"<<e->start<<","<<e->end<<"} Count:"<<e->count<<std::endl;
+    std::cout<<"{"<<e->start<<","<<e->end<<"} Count:"<<e->count<<" freq:"<<e->input_freq<<std::endl;
   }
 
 }
