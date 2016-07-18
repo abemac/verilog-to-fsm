@@ -6,6 +6,9 @@
 #include <set>
 #include <list>
 #include <bitset>
+#include <algorithm>
+
+
 void read_in_file();
 void buildGraph();
 void BFS();
@@ -45,6 +48,10 @@ std::vector<Node*> vertices;
 
 unsigned long long numFlipFlops;
 
+bool compareByState(const Node* a, const Node* b){
+  return a->val < b->val;
+}
+
 
 int main(int argc, char* argv[]){
   path="../complete/";
@@ -59,8 +66,11 @@ int main(int argc, char* argv[]){
   buildGraph();
   createCodeVector();
   BFS();
-  std::cout<<"here"<<std::endl;
+
+  std::sort(vertices.begin(),vertices.end(),compareByState);
+
   for(Node* n : vertices){
+    std::cout<<n->val<<":";
     for(int i = numFlipFlops-1; i>=0;i--){
       unsigned int x = ((n->encoding) & (1<<i))>>i;
       std::cout<<x;
@@ -105,7 +115,6 @@ void createCodeVector(){
     }
 
     codeLevels.push_back(next);
-    //baseVal=next->codes[0]->val;
 
   }
 
@@ -186,7 +195,7 @@ unsigned long long getBestNextEncoding(unsigned long long current_enc){
       }
     }
     //otherwise, try to the right and left
-    if(loc+distanceAway<codeLevels.size()){
+    if(loc<codeLevels.size()-distanceAway){
       for(Code * c : codeLevels[loc+distanceAway]->codes){
         if(c->used==false){
           c->used=true;
@@ -194,7 +203,7 @@ unsigned long long getBestNextEncoding(unsigned long long current_enc){
         }
       }
     }
-    if(loc-distanceAway>0){
+    if(loc>distanceAway){
       for(Code * c : codeLevels[loc-distanceAway]->codes){
         if(c->used==false){
           c->used=true;
