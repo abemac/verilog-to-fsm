@@ -5,7 +5,7 @@
 #include <fstream>
 #include <set>
 #include <list>
-
+#include <bitset>
 void read_in_file();
 void buildGraph();
 void BFS();
@@ -29,14 +29,21 @@ Node* getNode(unsigned long long i);
 struct Code{
   unsigned long long val;
   bool used;
-}
+  Code(unsigned long long v){
+    val=v;
+    used=false;
+  }
+};
 struct CodeLevel{
   std::vector<Code*> codes;
-  
-}
+};
 
+Code * findCode(unsigned long long val);
+
+std::vector<CodeLevel*> codeLevels;
 std::vector<Node*> vertices;
 
+unsigned long long numFlipFlops;
 
 
 int main(int argc, char* argv[]){
@@ -50,9 +57,68 @@ int main(int argc, char* argv[]){
   //   std::cout<<""<<std::endl;
   // }
   buildGraph();
+  createCodeVector();
+  BFS();
+  std::cout<<"here"<<std::endl;
+  for(Node* n : vertices){
+    for(int i = numFlipFlops-1; i>=0;i--){
+      unsigned int x = ((n->encoding) & (1<<i))>>i;
+      std::cout<<x;
+    }
+    std::cout<<std::endl;
+  }
 
 }
 
+
+void createCodeVector(){
+  //first, find how many flip flops
+  numFlipFlops=0;
+  unsigned long long count=1;
+  while(count<src_file.size()){
+    numFlipFlops++;
+    count<<=1;//multiply by two
+  }
+
+  usedCodes=std::vector<bool>(count);
+
+  //second, create Code vector.
+  CodeLevel* cl1=new CodeLevel();
+  cl1->codes.push_back(new Code(0));
+  usedCodes[0]=true;
+  codeLevels.push_back(cl1);
+
+  unsigned long long workingVal=0;
+  unsigned long long baseVal=0;
+  while(codeLevels.size()<numFlipFlops+1){
+    CodeLevel * prev = codeLevels.back();
+    CodeLevel * next = new CodeLevel();
+    for(Code * c : prev->codes){
+      baseVal=c->val;
+      for(unsigned long long i=0;i<numFlipFlops;i++){
+        workingVal=baseVal | (1<<i);
+        if(!usedCodes[workingVal]){
+          next->codes.push_back(new Code(workingVal));
+          usedCodes[workingVal]=true;
+        }
+      }
+    }
+
+    codeLevels.push_back(next);
+    //baseVal=next->codes[0]->val;
+
+  }
+
+  // for(CodeLevel * cl : codeLevels){
+  //   for(Code * c : cl->codes){
+  //     std::cout<<(c->val)<<" ";
+  //   }
+  //   std::cout<<std::endl;
+  // }
+
+
+
+}
 
 void BFS(){
   for(Node * v : vertices){
@@ -64,13 +130,14 @@ void BFS(){
   vertices[0]->visited=true;
   vertices[0]->encoding=0;
   vertices[0]->visited=true;
+  findCode(0)->used=true;
 
   while(queue.size()!=0){
     Node * n = queue.front();
 
     for(Node* n2 : n->adj){
       if(n2->visited==false){
-        n2->encoding = getBestNextEncoding(n2->encoding);
+        n2->encoding = getBestNextEncoding(n->encoding);
         n2->visited =true;
         queue.push_back(n2);
       }
@@ -85,8 +152,61 @@ void BFS(){
 }
 
 
-unsigned long long getBestNextEncoding(unsigned long long current_enc){
+Code * findCode(unsigned long long val_){
+  for(CodeLevel* cl : codeLevels){
+    for(Code* c : cl->codes){
+      if(c->val == val_){
+        return c;
+      }
+    }
+  }
+  return nullptr;
+}
 
+unsigned long long getBestNextEncoding(unsigned long long current_enc){
+  Code* current=nullptr;
+  unsigned long long loc;
+  for(unsigned long long j=0;j<codeLevels.size() && current==nullptr;j++){
+    for(Code* c : codeLevels[j]->codes){
+      if(c->val == current_enc){
+        current=c;
+        loc=j;
+      }
+    }
+  }
+
+  unsigned long long distanceAway=1;
+  while(distanceAway <= numFlipFlops){
+    if(distanceAway==2){//try in same column first
+      for(Code * cc : codeLevels[loc]->codes){
+        if(cc->used == false){
+          cc->used=true;
+          return cc->val;
+        }
+      }
+    }
+    //otherwise, try to the right and left
+    if(loc+distanceAway<codeLevels.size()){
+      for(Code * c : codeLevels[loc+distanceAway]->codes){
+        if(c->used==false){
+          c->used=true;
+          return c->val;
+        }
+      }
+    }
+    if(loc-distanceAway>0){
+      for(Code * c : codeLevels[loc-distanceAway]->codes){
+        if(c->used==false){
+          c->used=true;
+          return c->val;
+        }
+      }
+    }
+
+    distanceAway++;
+
+  }
+  return -1;
 }
 
 Node* getNode(unsigned long long i){
