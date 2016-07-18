@@ -10,6 +10,7 @@
 
 
 void read_in_file();
+void write_file();
 void buildGraph();
 void BFS();
 unsigned long long getBestNextEncoding(unsigned long long current_enc);
@@ -56,6 +57,9 @@ bool compareByState(const Node* a, const Node* b){
 int main(int argc, char* argv[]){
   path="../complete/";
   path.append(argv[1]);
+  output_path="sa/state_assignments(";
+  output_path.append(argv[1]);
+  output_path.append(").txt");
   read_in_file();
   // for(std::vector<unsigned long long > v : src_file){
   //   for(unsigned long long u: v){
@@ -68,17 +72,31 @@ int main(int argc, char* argv[]){
   BFS();
 
   std::sort(vertices.begin(),vertices.end(),compareByState);
-
-  for(Node* n : vertices){
-    std::cout<<n->val<<":";
-    for(int i = numFlipFlops-1; i>=0;i--){
-      unsigned int x = ((n->encoding) & (1<<i))>>i;
-      std::cout<<x;
-    }
-    std::cout<<std::endl;
-  }
+  write_file();
+  std::cout<<output_path<<" outputted"<<std::endl;
 
 }
+void write_file(){
+  std::ofstream FILE;
+  FILE.open(output_path);
+  for(Node* n : vertices){
+    FILE<<n->val<<":";
+    if(n->val != 0 && n->encoding==0){
+      FILE<<"not reachable from initial state - no encoding given";
+    }
+    else{
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->encoding) & (1<<i))>>i;
+        FILE<<x;
+      }
+    }
+  FILE<<"\n";
+  }
+
+  FILE.close();
+
+}
+
 
 
 void createCodeVector(){
