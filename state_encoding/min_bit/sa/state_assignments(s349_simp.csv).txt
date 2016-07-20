@@ -13,7 +13,7 @@
 12:not reachable from initial state - no encoding given
 13:not reachable from initial state - no encoding given
 14:not reachable from initial state - no encoding given
-15:not reachable from initial state - no encoding given
+15:0001010000100
 16:0000000000001
 17:0000000010000
 18:0000011000001
@@ -44,7 +44,7 @@
 43:1010100101100
 44:0110000110110
 45:0110000110110
-46:0000101100000
+46:0000000001111
 47:0000000000011
 48:1001100110000
 49:1100011100000
@@ -52,14 +52,14 @@
 51:1010010000000
 52:1011110100000
 53:1100110100000
-54:1000100101100
+54:0000000010111
 55:1000100110001
 56:0110000110001
 57:1000100101100
 58:1000100110001
 59:0110000110001
 60:1000100101100
-61:1000100110001
+61:0000000100111
 62:0000000000101
 63:0110000111000
 64:0110000111000
@@ -67,14 +67,14 @@
 66:0110000111000
 67:0000000001001
 68:0110000111000
-69:1001000110001
+69:0000001000111
 70:0110000110010
 71:1000100101100
 72:1001000110001
 73:0110000110010
 74:1000100101100
 75:1001000110001
-76:0110000110010
+76:0000010000111
 77:0000000010001
 78:1111100100000
 79:1000101100000
@@ -82,14 +82,14 @@
 81:1101010100000
 82:0000000100001
 83:0111100000000
-84:1000101110000
+84:0000100000111
 85:0000000110001
 86:1101111000000
 87:0000001100001
 88:0001000110000
 89:1011100100000
 90:0000000110000
-91:1010010000000
+91:0001000000111
 92:0000001000001
 93:0000000110000
 94:0110111010000
@@ -97,14 +97,14 @@
 96:1001101000000
 97:0000100000001
 98:0000000110000
-99:0010111100000
+99:0010000000111
 100:1010001000000
 101:0000000110001
 102:0001111100000
 103:0111000010000
 104:0000000110000
 105:1101011110000
-106:not reachable from initial state - no encoding given
+106:0100000000111
 107:0001000000001
 108:0000101100000
 109:1001111000000
@@ -112,149 +112,149 @@
 111:1100011100000
 112:0100000000001
 113:1111100000000
-114:0000100000000
+114:1000000000111
 115:0001100000000
 116:0000110100000
 117:1010000000000
 118:1011100100000
 119:1100100100000
 120:1011001010000
-121:1111101000000
+121:0000000011011
 122:1000000000001
 123:0001101000000
-124:0000000110000
+124:0000000101011
 125:0000000000110
 126:not reachable from initial state - no encoding given
 127:0000000001010
 128:0001110000000
-129:not reachable from initial state - no encoding given
+129:0000001001011
 130:0000000110000
 131:1100001100000
 132:not reachable from initial state - no encoding given
 133:0000000110001
 134:1010001000000
 135:1110101000000
-136:0000000110000
+136:0000010001011
 137:0000000010010
 138:not reachable from initial state - no encoding given
-139:0000000110000
+139:0000100001011
 140:0000000100010
 141:1001000000000
 142:0000001000010
 143:1001111000000
-144:1001100110000
+144:0001000001011
 145:1100011100000
 146:1011000010000
 147:1111100000000
 148:0000100000000
 149:0001100000000
 150:1010011010000
-151:1100100110000
+151:0010000001011
 152:0000010000010
 153:1011010110000
-154:1101101100000
+154:0100000001011
 155:0000100000010
 156:1001011110000
 157:0001000000010
 158:1000101100000
-159:1010010000000
+159:1000000001011
 160:1011110100000
 161:1100110100000
 162:1011011010000
 163:1111111000000
 164:0000111000000
 165:0001111000000
-166:1010110010000
+166:0000000110011
 167:0010000000010
 168:1010101110000
-169:1101000100000
+169:0000001010011
 170:0100000000010
 171:1000110110000
 172:1000000000010
 173:1010110110000
-174:0000000110000
+174:0000010010011
 175:0110111010000
 176:not reachable from initial state - no encoding given
 177:0001010100001
 178:1011000000000
 179:not reachable from initial state - no encoding given
 180:0000000110000
-181:0011110111000
+181:0000100010011
 182:0000000001100
 183:0000000110000
-184:1111000100000
+184:0001000010011
 185:0000000010100
 186:0000000110001
 187:0000000100100
 188:1001110110000
-189:0000000110000
+189:0010000010011
 190:1000000000000
 191:not reachable from initial state - no encoding given
 192:0000000110001
 193:0010010100000
 194:1000101000000
 195:0000001100001
-196:1000111110000
+196:0100000010011
 197:0000001000100
 198:0000011110001
-199:0010000000000
+199:1000000010011
 200:0000010000100
 201:0000000110001
 202:0000100000100
 203:1001110110000
-204:0000000110000
+204:0000001100011
 205:0111001110000
 206:not reachable from initial state - no encoding given
 207:0000000110000
 208:1010111000000
 209:0111000010000
 210:0000000110000
-211:0111001100000
+211:0000010100011
 212:0001000000100
 213:0000000110000
-214:1110000100000
+214:0000100100011
 215:0010000000100
 216:0000000110000
 217:0100000000100
 218:0000011000001
-219:0111001100000
+219:0001000100011
 220:not reachable from initial state - no encoding given
 221:0000000110000
 222:1001111100000
 223:not reachable from initial state - no encoding given
 224:0000111100001
 225:0001001100000
-226:not reachable from initial state - no encoding given
+226:0010000100011
 227:1000000000100
-228:1001111100000
-229:not reachable from initial state - no encoding given
+228:0100000100011
+229:1000000100011
 230:0000000011000
 231:1000000000000
 232:0000000101000
 233:0000000110000
-234:0111001100000
+234:0000011000011
 235:not reachable from initial state - no encoding given
 236:0000000110000
 237:0000101100000
 238:0000110100000
 239:0000000110000
 240:1110111000000
-241:1010100110000
+241:0000101000011
 242:0000001001000
 243:0000010001000
-244:not reachable from initial state - no encoding given
+244:0001001000011
 245:0000100001000
 246:0000000110000
 247:0001000001000
 248:0000010000000
-249:0000000110001
+249:0010001000011
 250:0001110000000
 251:1111101010000
 252:0000000110000
 253:1100100100000
 254:not reachable from initial state - no encoding given
 255:0000100100001
-256:1010001000000
+256:0100001000011
 257:0010000001000
 258:0001100000001
 259:1100111110000
@@ -282,7 +282,7 @@
 281:1001000101100
 282:1001000101100
 283:1001000101100
-284:0110000110011
+284:1000001000011
 285:0100000001000
 286:0110000110011
 287:0110000110011
@@ -296,7 +296,7 @@
 295:0000101100000
 296:1001111000000
 297:1001100110000
-298:1100011100000
+298:0000110000011
 299:0000000110000
 300:1111100000000
 301:0000100000000
@@ -310,7 +310,7 @@
 309:1110100010000
 310:0000001110000
 311:1100111110000
-312:1001100100000
+312:0001010000011
 313:0000010010000
 314:0110010010000
 315:0111110100000
@@ -324,7 +324,7 @@
 323:not reachable from initial state - no encoding given
 324:not reachable from initial state - no encoding given
 325:not reachable from initial state - no encoding given
-326:not reachable from initial state - no encoding given
+326:0010010000011
 327:0001000010000
 328:not reachable from initial state - no encoding given
 329:not reachable from initial state - no encoding given
@@ -338,7 +338,7 @@
 337:not reachable from initial state - no encoding given
 338:not reachable from initial state - no encoding given
 339:not reachable from initial state - no encoding given
-340:not reachable from initial state - no encoding given
+340:0100010000011
 341:0100000010000
 342:not reachable from initial state - no encoding given
 343:not reachable from initial state - no encoding given
@@ -352,7 +352,7 @@
 351:not reachable from initial state - no encoding given
 352:not reachable from initial state - no encoding given
 353:not reachable from initial state - no encoding given
-354:not reachable from initial state - no encoding given
+354:1000010000011
 355:0000001100000
 356:not reachable from initial state - no encoding given
 357:0000010100000
@@ -366,7 +366,7 @@
 365:not reachable from initial state - no encoding given
 366:not reachable from initial state - no encoding given
 367:not reachable from initial state - no encoding given
-368:not reachable from initial state - no encoding given
+368:0001100000011
 369:0001000100000
 370:not reachable from initial state - no encoding given
 371:0010000100000
@@ -380,7 +380,7 @@
 379:0110110010000
 380:0011011100000
 381:0100011100000
-382:0101011100000
+382:0010100000011
 383:1000000100000
 384:0111011100000
 385:0000011000000
@@ -394,7 +394,7 @@
 393:not reachable from initial state - no encoding given
 394:not reachable from initial state - no encoding given
 395:not reachable from initial state - no encoding given
-396:not reachable from initial state - no encoding given
+396:0100100000011
 397:0001001000000
 398:not reachable from initial state - no encoding given
 399:0010001000000
@@ -408,7 +408,7 @@
 407:not reachable from initial state - no encoding given
 408:not reachable from initial state - no encoding given
 409:not reachable from initial state - no encoding given
-410:not reachable from initial state - no encoding given
+410:1000100000011
 411:1000001000000
 412:not reachable from initial state - no encoding given
 413:0000110000000
@@ -422,7 +422,7 @@
 421:not reachable from initial state - no encoding given
 422:not reachable from initial state - no encoding given
 423:not reachable from initial state - no encoding given
-424:not reachable from initial state - no encoding given
+424:0011000000011
 425:0010010000000
 426:not reachable from initial state - no encoding given
 427:0100010000000
@@ -436,7 +436,7 @@
 435:not reachable from initial state - no encoding given
 436:not reachable from initial state - no encoding given
 437:not reachable from initial state - no encoding given
-438:not reachable from initial state - no encoding given
+438:0101000000011
 439:0001100000000
 440:not reachable from initial state - no encoding given
 441:0010100000000
@@ -450,7 +450,7 @@
 449:not reachable from initial state - no encoding given
 450:not reachable from initial state - no encoding given
 451:not reachable from initial state - no encoding given
-452:not reachable from initial state - no encoding given
+452:1001000000011
 453:1000100000000
 454:not reachable from initial state - no encoding given
 455:0011000000000
@@ -464,7 +464,7 @@
 463:not reachable from initial state - no encoding given
 464:not reachable from initial state - no encoding given
 465:not reachable from initial state - no encoding given
-466:not reachable from initial state - no encoding given
+466:0110000000011
 467:1001000000000
 468:not reachable from initial state - no encoding given
 469:0110000000000
@@ -479,7 +479,7 @@
 478:not reachable from initial state - no encoding given
 479:not reachable from initial state - no encoding given
 480:not reachable from initial state - no encoding given
-481:not reachable from initial state - no encoding given
+481:1010000000011
 482:0000000000100
 483:not reachable from initial state - no encoding given
 484:0000010000000
@@ -505,191 +505,191 @@
 504:not reachable from initial state - no encoding given
 505:not reachable from initial state - no encoding given
 506:not reachable from initial state - no encoding given
-507:not reachable from initial state - no encoding given
+507:1100000000011
 508:0000000001000
 509:not reachable from initial state - no encoding given
 510:not reachable from initial state - no encoding given
 511:not reachable from initial state - no encoding given
 512:not reachable from initial state - no encoding given
 513:not reachable from initial state - no encoding given
-514:not reachable from initial state - no encoding given
+514:0000000011101
 515:not reachable from initial state - no encoding given
 516:not reachable from initial state - no encoding given
 517:not reachable from initial state - no encoding given
 518:0000010000000
 519:0000010000000
-520:1000101110000
+520:0000000101101
 521:0000000010000
 522:0010110110000
 523:1100001110000
 524:1101001110000
-525:1110001110000
+525:0000001001101
 526:1111001110000
-527:0000101100000
+527:0000010001101
 528:1001111000000
 529:1001100110000
 530:1100011100000
 531:1011000010000
 532:1111100000000
-533:0000100000000
+533:0000100001101
 534:0000000100000
 535:1010011010000
 536:1100100110000
-537:1010010110000
-538:1011010110000
+537:0001000001101
+538:0010000001101
 539:1101101100000
-540:1110101100000
+540:0100000001101
 541:1001011110000
 542:1010011110000
 543:1111011010000
 544:0000011010000
 545:0000001100000
-546:0001001100000
+546:1000000001101
 547:0000001000000
 548:0111111110000
 549:0111001100000
-550:1000001100000
-551:1001001100000
+550:0000000110101
+551:0000001010101
 552:1111100110000
-553:0000100110000
+553:0000010010101
 554:0001100110000
 555:0010100110000
 556:1101010000000
 557:1110010000000
 558:1111111110000
-559:0110100010000
+559:0000100010101
 560:0000010000000
 561:1001000100000
 562:0010010000000
-563:0011010000000
-564:0111000010000
+563:0001000010101
+564:0010000010101
 565:0011101100000
-566:0100101100000
+566:0100000010101
 567:0101101100000
 568:0110101100000
 569:0111101100000
 570:1000101100000
 571:1001101100000
-572:0100010000000
+572:1000000010101
 573:0000100000000
 574:1110101110000
 575:1111101110000
-576:0000101110000
-577:0001101110000
+576:0000001100101
+577:0000010100101
 578:0010101110000
-579:0011101110000
+579:0000100100101
 580:0100101110000
 581:0101101110000
 582:0110101110000
 583:0111101110000
 584:1000101110000
-585:1001101110000
+585:0001000100101
 586:0001000000000
 587:1100111110000
 588:1101111110000
-589:1110111110000
-590:1011010100000
+589:0010000100101
+590:0100000100101
 591:0000010000000
-592:1000101110000
+592:1000000100101
 593:0111101110000
 594:0010110110000
 595:1100001110000
 596:1101001110000
 597:1110001110000
-598:1111001110000
+598:0000011000101
 599:0010000000000
 600:1011110010000
 601:1100110010000
-602:1101110010000
-603:1110110010000
+602:0000101000101
+603:0001001000101
 604:1111110010000
-605:0000110010000
+605:0010001000101
 606:0001110010000
 607:not reachable from initial state - no encoding given
 608:not reachable from initial state - no encoding given
 609:not reachable from initial state - no encoding given
 610:not reachable from initial state - no encoding given
-611:not reachable from initial state - no encoding given
+611:0100001000101
 612:0100000000000
 613:not reachable from initial state - no encoding given
 614:not reachable from initial state - no encoding given
-615:not reachable from initial state - no encoding given
-616:not reachable from initial state - no encoding given
+615:1000001000101
+616:0000110000101
 617:not reachable from initial state - no encoding given
-618:not reachable from initial state - no encoding given
+618:0001010000101
 619:not reachable from initial state - no encoding given
 620:not reachable from initial state - no encoding given
 621:not reachable from initial state - no encoding given
 622:not reachable from initial state - no encoding given
 623:not reachable from initial state - no encoding given
-624:not reachable from initial state - no encoding given
+624:0010010000101
 625:1000000000000
 626:not reachable from initial state - no encoding given
 627:not reachable from initial state - no encoding given
-628:not reachable from initial state - no encoding given
-629:not reachable from initial state - no encoding given
+628:0100010000101
+629:1000010000101
 630:not reachable from initial state - no encoding given
-631:not reachable from initial state - no encoding given
+631:0001100000101
 632:not reachable from initial state - no encoding given
 633:not reachable from initial state - no encoding given
 634:not reachable from initial state - no encoding given
 635:not reachable from initial state - no encoding given
 636:not reachable from initial state - no encoding given
-637:not reachable from initial state - no encoding given
+637:0010100000101
 638:0000000000111
 639:not reachable from initial state - no encoding given
 640:not reachable from initial state - no encoding given
-641:not reachable from initial state - no encoding given
-642:not reachable from initial state - no encoding given
+641:0100100000101
+642:1000100000101
 643:not reachable from initial state - no encoding given
-644:not reachable from initial state - no encoding given
+644:0011000000101
 645:not reachable from initial state - no encoding given
 646:not reachable from initial state - no encoding given
 647:not reachable from initial state - no encoding given
 648:not reachable from initial state - no encoding given
 649:not reachable from initial state - no encoding given
-650:not reachable from initial state - no encoding given
+650:0101000000101
 651:0000000001011
 652:not reachable from initial state - no encoding given
 653:not reachable from initial state - no encoding given
-654:not reachable from initial state - no encoding given
-655:not reachable from initial state - no encoding given
+654:1001000000101
+655:0110000000101
 656:not reachable from initial state - no encoding given
-657:not reachable from initial state - no encoding given
+657:1010000000101
 658:not reachable from initial state - no encoding given
 659:not reachable from initial state - no encoding given
 660:not reachable from initial state - no encoding given
 661:not reachable from initial state - no encoding given
 662:not reachable from initial state - no encoding given
-663:not reachable from initial state - no encoding given
+663:1100000000101
 664:0000000010011
 665:not reachable from initial state - no encoding given
 666:not reachable from initial state - no encoding given
-667:not reachable from initial state - no encoding given
-668:not reachable from initial state - no encoding given
+667:0000000111001
+668:0000001011001
 669:not reachable from initial state - no encoding given
-670:not reachable from initial state - no encoding given
+670:0000010011001
 671:not reachable from initial state - no encoding given
 672:not reachable from initial state - no encoding given
 673:not reachable from initial state - no encoding given
 674:not reachable from initial state - no encoding given
 675:not reachable from initial state - no encoding given
-676:not reachable from initial state - no encoding given
+676:0000100011001
 677:0000000100011
 678:not reachable from initial state - no encoding given
 679:not reachable from initial state - no encoding given
 680:0000001000011
-681:not reachable from initial state - no encoding given
-682:not reachable from initial state - no encoding given
-683:not reachable from initial state - no encoding given
+681:0001000011001
+682:0010000011001
+683:0100000011001
 684:not reachable from initial state - no encoding given
-685:not reachable from initial state - no encoding given
+685:1000000011001
 686:not reachable from initial state - no encoding given
 687:not reachable from initial state - no encoding given
 688:not reachable from initial state - no encoding given
 689:not reachable from initial state - no encoding given
 690:not reachable from initial state - no encoding given
-691:not reachable from initial state - no encoding given
+691:0000001101001
 692:0000010000011
 693:not reachable from initial state - no encoding given
 694:not reachable from initial state - no encoding given
@@ -713,7 +713,7 @@
 712:not reachable from initial state - no encoding given
 713:not reachable from initial state - no encoding given
 714:1011100100000
-715:1100111100000
+715:0000010101001
 716:0000100000011
 717:0000110110000
 718:0100101100000
@@ -725,7 +725,7 @@
 724:not reachable from initial state - no encoding given
 725:not reachable from initial state - no encoding given
 726:not reachable from initial state - no encoding given
-727:not reachable from initial state - no encoding given
+727:0000100101001
 728:0010000000011
 729:not reachable from initial state - no encoding given
 730:not reachable from initial state - no encoding given
@@ -737,7 +737,7 @@
 736:not reachable from initial state - no encoding given
 737:not reachable from initial state - no encoding given
 738:not reachable from initial state - no encoding given
-739:not reachable from initial state - no encoding given
+739:0001000101001
 740:0000000001101
 741:not reachable from initial state - no encoding given
 742:not reachable from initial state - no encoding given
@@ -749,7 +749,7 @@
 748:not reachable from initial state - no encoding given
 749:not reachable from initial state - no encoding given
 750:not reachable from initial state - no encoding given
-751:not reachable from initial state - no encoding given
+751:0010000101001
 752:0000001000101
 753:not reachable from initial state - no encoding given
 754:not reachable from initial state - no encoding given
@@ -761,7 +761,7 @@
 760:not reachable from initial state - no encoding given
 761:not reachable from initial state - no encoding given
 762:not reachable from initial state - no encoding given
-763:not reachable from initial state - no encoding given
+763:0100000101001
 764:0001000000101
 765:not reachable from initial state - no encoding given
 766:not reachable from initial state - no encoding given
@@ -773,7 +773,7 @@
 772:not reachable from initial state - no encoding given
 773:not reachable from initial state - no encoding given
 774:not reachable from initial state - no encoding given
-775:not reachable from initial state - no encoding given
+775:1000000101001
 776:1000000000101
 777:not reachable from initial state - no encoding given
 778:0000111100000
@@ -785,7 +785,7 @@
 784:0111101010000
 785:1000101010000
 786:0110111100000
-787:1011100100000
+787:0000011001001
 788:0000001001001
 789:1101100100000
 790:1110100100000
@@ -797,7 +797,7 @@
 796:not reachable from initial state - no encoding given
 797:not reachable from initial state - no encoding given
 798:not reachable from initial state - no encoding given
-799:not reachable from initial state - no encoding given
+799:0000101001001
 800:0001000001001
 801:not reachable from initial state - no encoding given
 802:not reachable from initial state - no encoding given
@@ -809,7 +809,7 @@
 808:not reachable from initial state - no encoding given
 809:not reachable from initial state - no encoding given
 810:not reachable from initial state - no encoding given
-811:not reachable from initial state - no encoding given
+811:0001001001001
 812:1000000001001
 813:not reachable from initial state - no encoding given
 814:not reachable from initial state - no encoding given
@@ -821,7 +821,7 @@
 820:not reachable from initial state - no encoding given
 821:not reachable from initial state - no encoding given
 822:not reachable from initial state - no encoding given
-823:not reachable from initial state - no encoding given
+823:0010001001001
 824:0000010010001
 825:not reachable from initial state - no encoding given
 826:not reachable from initial state - no encoding given
@@ -833,7 +833,7 @@
 832:not reachable from initial state - no encoding given
 833:not reachable from initial state - no encoding given
 834:not reachable from initial state - no encoding given
-835:not reachable from initial state - no encoding given
+835:0100001001001
 836:0010000010001
 837:not reachable from initial state - no encoding given
 838:not reachable from initial state - no encoding given
@@ -845,7 +845,7 @@
 844:not reachable from initial state - no encoding given
 845:not reachable from initial state - no encoding given
 846:not reachable from initial state - no encoding given
-847:not reachable from initial state - no encoding given
+847:1000001001001
 848:0000001100001
 849:not reachable from initial state - no encoding given
 850:not reachable from initial state - no encoding given
@@ -857,7 +857,7 @@
 856:not reachable from initial state - no encoding given
 857:not reachable from initial state - no encoding given
 858:not reachable from initial state - no encoding given
-859:not reachable from initial state - no encoding given
+859:0000110001001
 860:0001000100001
 861:not reachable from initial state - no encoding given
 862:not reachable from initial state - no encoding given
@@ -869,7 +869,7 @@
 868:not reachable from initial state - no encoding given
 869:not reachable from initial state - no encoding given
 870:not reachable from initial state - no encoding given
-871:not reachable from initial state - no encoding given
+871:0001010001001
 872:1000000100001
 873:not reachable from initial state - no encoding given
 874:not reachable from initial state - no encoding given
@@ -884,7 +884,7 @@
 883:not reachable from initial state - no encoding given
 884:not reachable from initial state - no encoding given
 885:not reachable from initial state - no encoding given
-886:not reachable from initial state - no encoding given
+886:0010010001001
 887:1000001000001
 888:not reachable from initial state - no encoding given
 889:not reachable from initial state - no encoding given
@@ -906,165 +906,165 @@
 905:0000100000000
 906:not reachable from initial state - no encoding given
 907:not reachable from initial state - no encoding given
-908:not reachable from initial state - no encoding given
+908:0100010001001
 909:0000110000001
 910:not reachable from initial state - no encoding given
 911:not reachable from initial state - no encoding given
 912:not reachable from initial state - no encoding given
 913:not reachable from initial state - no encoding given
-914:not reachable from initial state - no encoding given
+914:1000010001001
 915:not reachable from initial state - no encoding given
 916:not reachable from initial state - no encoding given
 917:not reachable from initial state - no encoding given
 918:not reachable from initial state - no encoding given
-919:not reachable from initial state - no encoding given
+919:0001100001001
 920:0001010000001
 921:not reachable from initial state - no encoding given
 922:not reachable from initial state - no encoding given
 923:not reachable from initial state - no encoding given
 924:not reachable from initial state - no encoding given
-925:not reachable from initial state - no encoding given
+925:0010100001001
 926:not reachable from initial state - no encoding given
 927:not reachable from initial state - no encoding given
 928:not reachable from initial state - no encoding given
 929:not reachable from initial state - no encoding given
-930:not reachable from initial state - no encoding given
+930:0100100001001
 931:0010010000001
 932:not reachable from initial state - no encoding given
 933:not reachable from initial state - no encoding given
 934:not reachable from initial state - no encoding given
 935:not reachable from initial state - no encoding given
-936:not reachable from initial state - no encoding given
+936:1000100001001
 937:not reachable from initial state - no encoding given
 938:not reachable from initial state - no encoding given
 939:not reachable from initial state - no encoding given
 940:not reachable from initial state - no encoding given
-941:not reachable from initial state - no encoding given
+941:0011000001001
 942:0100010000001
 943:not reachable from initial state - no encoding given
 944:not reachable from initial state - no encoding given
 945:not reachable from initial state - no encoding given
 946:not reachable from initial state - no encoding given
-947:not reachable from initial state - no encoding given
+947:0101000001001
 948:not reachable from initial state - no encoding given
 949:not reachable from initial state - no encoding given
 950:not reachable from initial state - no encoding given
 951:not reachable from initial state - no encoding given
-952:not reachable from initial state - no encoding given
+952:1001000001001
 953:1000010000001
 954:not reachable from initial state - no encoding given
 955:not reachable from initial state - no encoding given
 956:not reachable from initial state - no encoding given
 957:not reachable from initial state - no encoding given
-958:not reachable from initial state - no encoding given
+958:0110000001001
 959:0010000010000
 960:1000100010000
 961:1110110100000
 962:0000101010000
-963:0111110100000
+963:1010000001001
 964:0001100000001
 965:0110100100000
 966:0110100110000
 967:0010110000000
 968:0011110000000
-969:0110110000000
+969:1100000001001
 970:0111110000000
 971:1000110000000
 972:1001110000000
 973:1010110000000
-974:1011110000000
+974:0000001110001
 975:0010100000001
 976:not reachable from initial state - no encoding given
 977:not reachable from initial state - no encoding given
 978:not reachable from initial state - no encoding given
 979:not reachable from initial state - no encoding given
-980:not reachable from initial state - no encoding given
+980:0000010110001
 981:not reachable from initial state - no encoding given
 982:not reachable from initial state - no encoding given
 983:not reachable from initial state - no encoding given
 984:not reachable from initial state - no encoding given
-985:not reachable from initial state - no encoding given
+985:0000100110001
 986:0100100000001
 987:not reachable from initial state - no encoding given
 988:not reachable from initial state - no encoding given
 989:not reachable from initial state - no encoding given
 990:not reachable from initial state - no encoding given
-991:not reachable from initial state - no encoding given
+991:0001000110001
 992:not reachable from initial state - no encoding given
 993:not reachable from initial state - no encoding given
 994:not reachable from initial state - no encoding given
 995:not reachable from initial state - no encoding given
-996:not reachable from initial state - no encoding given
+996:0010000110001
 997:1000100000001
 998:not reachable from initial state - no encoding given
 999:not reachable from initial state - no encoding given
 1000:not reachable from initial state - no encoding given
 1001:not reachable from initial state - no encoding given
-1002:not reachable from initial state - no encoding given
+1002:0100000110001
 1003:not reachable from initial state - no encoding given
 1004:not reachable from initial state - no encoding given
 1005:not reachable from initial state - no encoding given
 1006:not reachable from initial state - no encoding given
-1007:not reachable from initial state - no encoding given
+1007:1000000110001
 1008:0011000000001
 1009:not reachable from initial state - no encoding given
 1010:not reachable from initial state - no encoding given
 1011:not reachable from initial state - no encoding given
 1012:not reachable from initial state - no encoding given
-1013:not reachable from initial state - no encoding given
+1013:0000011010001
 1014:not reachable from initial state - no encoding given
 1015:not reachable from initial state - no encoding given
 1016:not reachable from initial state - no encoding given
 1017:not reachable from initial state - no encoding given
-1018:not reachable from initial state - no encoding given
+1018:0000101010001
 1019:0101000000001
 1020:not reachable from initial state - no encoding given
 1021:not reachable from initial state - no encoding given
 1022:not reachable from initial state - no encoding given
 1023:not reachable from initial state - no encoding given
-1024:not reachable from initial state - no encoding given
+1024:0001001010001
 1025:not reachable from initial state - no encoding given
 1026:not reachable from initial state - no encoding given
 1027:not reachable from initial state - no encoding given
 1028:not reachable from initial state - no encoding given
-1029:not reachable from initial state - no encoding given
+1029:0010001010001
 1030:1001000000001
 1031:not reachable from initial state - no encoding given
 1032:not reachable from initial state - no encoding given
 1033:not reachable from initial state - no encoding given
 1034:0000101100000
-1035:1001111000000
+1035:0100001010001
 1036:1001100110000
 1037:1100011100000
 1038:1011000010000
 1039:1111100000000
-1040:0000100000000
+1040:1000001010001
 1041:0110000000001
 1042:1010011010000
 1043:1100100110000
 1044:1010010110000
 1045:1011010110000
-1046:1101101100000
+1046:0000110010001
 1047:1110101100000
 1048:1001011110000
 1049:1010011110000
 1050:1111011010000
-1051:0000011010000
+1051:0001010010001
 1052:1010000000001
 1053:0001001100000
 1054:0110111110000
 1055:0111111110000
 1056:0111001100000
 1057:1100000000001
-1058:1001001100000
+1058:0010010010001
 1059:1111100110000
 1060:0000100110000
-1061:0001100110000
+1061:0100010010001
 1062:0010100110000
 1063:1101010000000
 1064:1110010000000
 1065:1111111110000
-1066:0110100010000
+1066:1000010010001
 1067:0000000001110
 1068:1001000100000
 1069:0010010000000
@@ -1084,7 +1084,7 @@
 1083:0011000000000
 1084:1000011100000
 1085:0001011110000
-1086:1000010110000
+1086:0001100010001
 1087:0000000010110
 1088:0010110010000
 1089:0000000110000
@@ -1094,7 +1094,7 @@
 1093:1000001100000
 1094:1001001100000
 1095:1010001100000
-1096:1011001100000
+1096:0010100010001
 1097:0000000100110
 1098:1101001100000
 1099:0010110010000
@@ -1104,7 +1104,7 @@
 1103:1000000010000
 1104:1001000010000
 1105:0111010100000
-1106:1011111100000
+1106:0100100010001
 1107:0000001000110
 1108:1101111100000
 1109:1110111100000
@@ -1114,7 +1114,7 @@
 1113:1010000010000
 1114:1011000010000
 1115:0110111110000
-1116:0111111110000
+1116:1000100010001
 1117:0000010000110
 1118:1001111110000
 1119:1010111110000
@@ -1124,7 +1124,7 @@
 1123:1110111110000
 1124:1111111110000
 1125:1100111110000
-1126:0000010010000
+1126:0011000010001
 1127:0000100000110
 1128:1001000100000
 1129:0110101100000
@@ -1134,7 +1134,7 @@
 1133:1011101100000
 1134:0110110000000
 1135:0111110000000
-1136:1010110010000
+1136:0101000010001
 1137:0001000000110
 1138:1100110010000
 1139:1101110010000
@@ -1144,7 +1144,7 @@
 1143:0011001000000
 1144:0100001000000
 1145:0111001000000
-1146:1000001000000
+1146:1001000010001
 1147:0010000000110
 1148:1010001000000
 1149:1011001000000
@@ -1154,7 +1154,7 @@
 1153:0001000010000
 1154:0010000010000
 1155:0011000010000
-1156:0100000010000
+1156:0110000010001
 1157:0100000000110
 1158:0110000010000
 1159:0111000010000
@@ -1164,7 +1164,7 @@
 1163:not reachable from initial state - no encoding given
 1164:not reachable from initial state - no encoding given
 1165:not reachable from initial state - no encoding given
-1166:not reachable from initial state - no encoding given
+1166:1010000010001
 1167:1000000000110
 1168:not reachable from initial state - no encoding given
 1169:not reachable from initial state - no encoding given
@@ -1174,7 +1174,7 @@
 1173:not reachable from initial state - no encoding given
 1174:not reachable from initial state - no encoding given
 1175:not reachable from initial state - no encoding given
-1176:not reachable from initial state - no encoding given
+1176:1100000010001
 1177:0000000011010
 1178:not reachable from initial state - no encoding given
 1179:not reachable from initial state - no encoding given
@@ -1184,7 +1184,7 @@
 1183:not reachable from initial state - no encoding given
 1184:not reachable from initial state - no encoding given
 1185:not reachable from initial state - no encoding given
-1186:not reachable from initial state - no encoding given
+1186:0000011100001
 1187:0000000101010
 1188:not reachable from initial state - no encoding given
 1189:not reachable from initial state - no encoding given
@@ -1194,7 +1194,7 @@
 1193:not reachable from initial state - no encoding given
 1194:not reachable from initial state - no encoding given
 1195:not reachable from initial state - no encoding given
-1196:not reachable from initial state - no encoding given
+1196:0000101100001
 1197:0000001001010
 1198:not reachable from initial state - no encoding given
 1199:not reachable from initial state - no encoding given
@@ -1204,7 +1204,7 @@
 1203:not reachable from initial state - no encoding given
 1204:not reachable from initial state - no encoding given
 1205:not reachable from initial state - no encoding given
-1206:not reachable from initial state - no encoding given
+1206:0001001100001
 1207:0000010001010
 1208:not reachable from initial state - no encoding given
 1209:not reachable from initial state - no encoding given
@@ -1214,7 +1214,7 @@
 1213:not reachable from initial state - no encoding given
 1214:not reachable from initial state - no encoding given
 1215:not reachable from initial state - no encoding given
-1216:not reachable from initial state - no encoding given
+1216:0010001100001
 1217:0000100001010
 1218:not reachable from initial state - no encoding given
 1219:not reachable from initial state - no encoding given
@@ -1223,13 +1223,13 @@
 1222:not reachable from initial state - no encoding given
 1223:0001000001010
 1224:0010000001010
-1225:not reachable from initial state - no encoding given
+1225:0100001100001
 1226:not reachable from initial state - no encoding given
 1227:0100000001010
 1228:not reachable from initial state - no encoding given
 1229:not reachable from initial state - no encoding given
 1230:not reachable from initial state - no encoding given
-1231:not reachable from initial state - no encoding given
+1231:1000001100001
 1232:1000000001010
 1233:not reachable from initial state - no encoding given
 1234:not reachable from initial state - no encoding given
@@ -1247,7 +1247,7 @@
 1246:1000100010000
 1247:1101001100000
 1248:1010101110000
-1249:0001001100000
+1249:0000110100001
 1250:0000000110010
 1251:0001000110000
 1252:0011001000000
@@ -1256,7 +1256,7 @@
 1255:not reachable from initial state - no encoding given
 1256:not reachable from initial state - no encoding given
 1257:not reachable from initial state - no encoding given
-1258:not reachable from initial state - no encoding given
+1258:0001010100001
 1259:0000001010010
 1260:not reachable from initial state - no encoding given
 1261:not reachable from initial state - no encoding given
@@ -1265,7 +1265,7 @@
 1264:not reachable from initial state - no encoding given
 1265:not reachable from initial state - no encoding given
 1266:not reachable from initial state - no encoding given
-1267:not reachable from initial state - no encoding given
+1267:0010010100001
 1268:0000010010010
 1269:not reachable from initial state - no encoding given
 1270:not reachable from initial state - no encoding given
@@ -1274,7 +1274,7 @@
 1273:not reachable from initial state - no encoding given
 1274:not reachable from initial state - no encoding given
 1275:not reachable from initial state - no encoding given
-1276:0000011000000
+1276:0100010100001
 1277:0000100010010
 1278:1010011110000
 1279:0000111100000
@@ -1283,7 +1283,7 @@
 1282:1111000100000
 1283:1110000110000
 1284:1101010110000
-1285:0001001110000
+1285:1000010100001
 1286:0001000010010
 1287:0110010110000
 1288:0111010110000
@@ -1292,7 +1292,7 @@
 1291:1100011000000
 1292:not reachable from initial state - no encoding given
 1293:not reachable from initial state - no encoding given
-1294:not reachable from initial state - no encoding given
+1294:0001100100001
 1295:0010000010010
 1296:not reachable from initial state - no encoding given
 1297:not reachable from initial state - no encoding given
@@ -1301,7 +1301,7 @@
 1300:not reachable from initial state - no encoding given
 1301:not reachable from initial state - no encoding given
 1302:not reachable from initial state - no encoding given
-1303:not reachable from initial state - no encoding given
+1303:0010100100001
 1304:0100000010010
 1305:not reachable from initial state - no encoding given
 1306:not reachable from initial state - no encoding given
@@ -1310,7 +1310,7 @@
 1309:not reachable from initial state - no encoding given
 1310:not reachable from initial state - no encoding given
 1311:not reachable from initial state - no encoding given
-1312:not reachable from initial state - no encoding given
+1312:0100100100001
 1313:1000000010010
 1314:not reachable from initial state - no encoding given
 1315:not reachable from initial state - no encoding given
@@ -1319,7 +1319,7 @@
 1318:not reachable from initial state - no encoding given
 1319:not reachable from initial state - no encoding given
 1320:not reachable from initial state - no encoding given
-1321:not reachable from initial state - no encoding given
+1321:1000100100001
 1322:0000001100010
 1323:not reachable from initial state - no encoding given
 1324:not reachable from initial state - no encoding given
@@ -1328,7 +1328,7 @@
 1327:not reachable from initial state - no encoding given
 1328:not reachable from initial state - no encoding given
 1329:not reachable from initial state - no encoding given
-1330:not reachable from initial state - no encoding given
+1330:0011000100001
 1331:0000010100010
 1332:not reachable from initial state - no encoding given
 1333:not reachable from initial state - no encoding given
@@ -1337,7 +1337,7 @@
 1336:not reachable from initial state - no encoding given
 1337:not reachable from initial state - no encoding given
 1338:not reachable from initial state - no encoding given
-1339:not reachable from initial state - no encoding given
+1339:0101000100001
 1340:0000100100010
 1341:not reachable from initial state - no encoding given
 1342:not reachable from initial state - no encoding given
@@ -1346,7 +1346,7 @@
 1345:not reachable from initial state - no encoding given
 1346:not reachable from initial state - no encoding given
 1347:not reachable from initial state - no encoding given
-1348:not reachable from initial state - no encoding given
+1348:1001000100001
 1349:0001000100010
 1350:not reachable from initial state - no encoding given
 1351:not reachable from initial state - no encoding given
@@ -1355,7 +1355,7 @@
 1354:not reachable from initial state - no encoding given
 1355:not reachable from initial state - no encoding given
 1356:not reachable from initial state - no encoding given
-1357:not reachable from initial state - no encoding given
+1357:0110000100001
 1358:0010000100010
 1359:not reachable from initial state - no encoding given
 1360:not reachable from initial state - no encoding given
@@ -1364,7 +1364,7 @@
 1363:not reachable from initial state - no encoding given
 1364:not reachable from initial state - no encoding given
 1365:not reachable from initial state - no encoding given
-1366:not reachable from initial state - no encoding given
+1366:1010000100001
 1367:0100000100010
 1368:not reachable from initial state - no encoding given
 1369:not reachable from initial state - no encoding given
@@ -1373,13 +1373,13 @@
 1372:not reachable from initial state - no encoding given
 1373:not reachable from initial state - no encoding given
 1374:1000000100010
-1375:not reachable from initial state - no encoding given
+1375:1100000100001
 1376:0000011000010
-1377:not reachable from initial state - no encoding given
+1377:0000111000001
 1378:not reachable from initial state - no encoding given
 1379:not reachable from initial state - no encoding given
 1380:not reachable from initial state - no encoding given
-1381:not reachable from initial state - no encoding given
+1381:0001011000001
 1382:0000101000010
 1383:not reachable from initial state - no encoding given
 1384:not reachable from initial state - no encoding given
@@ -1514,7 +1514,7 @@
 1513:0110000000010
 1514:not reachable from initial state - no encoding given
 1515:not reachable from initial state - no encoding given
-1516:not reachable from initial state - no encoding given
+1516:0010011000001
 1517:1010000000010
 1518:not reachable from initial state - no encoding given
 1519:not reachable from initial state - no encoding given
@@ -1630,11 +1630,11 @@
 1629:not reachable from initial state - no encoding given
 1630:not reachable from initial state - no encoding given
 1631:1100000000010
-1632:not reachable from initial state - no encoding given
-1633:not reachable from initial state - no encoding given
+1632:0100011000001
+1633:1000011000001
 1634:not reachable from initial state - no encoding given
 1635:not reachable from initial state - no encoding given
-1636:not reachable from initial state - no encoding given
+1636:0001101000001
 1637:0000000011100
 1638:not reachable from initial state - no encoding given
 1639:not reachable from initial state - no encoding given
@@ -1739,7 +1739,7 @@
 1738:0000001001100
 1739:0000010001100
 1740:not reachable from initial state - no encoding given
-1741:not reachable from initial state - no encoding given
+1741:0010101000001
 1742:0000100001100
 1743:not reachable from initial state - no encoding given
 1744:not reachable from initial state - no encoding given
@@ -1827,9 +1827,9 @@
 1826:not reachable from initial state - no encoding given
 1827:not reachable from initial state - no encoding given
 1828:0001000001100
-1829:not reachable from initial state - no encoding given
+1829:0100101000001
 1830:not reachable from initial state - no encoding given
-1831:not reachable from initial state - no encoding given
+1831:1000101000001
 1832:0010000001100
 1833:not reachable from initial state - no encoding given
 1834:not reachable from initial state - no encoding given
@@ -1904,7 +1904,7 @@
 1903:not reachable from initial state - no encoding given
 1904:0100000001100
 1905:1000000001100
-1906:not reachable from initial state - no encoding given
+1906:0011001000001
 1907:0000000110100
 1908:not reachable from initial state - no encoding given
 1909:not reachable from initial state - no encoding given
@@ -1964,7 +1964,7 @@
 1963:not reachable from initial state - no encoding given
 1964:not reachable from initial state - no encoding given
 1965:0000001010100
-1966:not reachable from initial state - no encoding given
+1966:0101001000001
 1967:0000010010100
 1968:not reachable from initial state - no encoding given
 1969:not reachable from initial state - no encoding given
@@ -2024,37 +2024,37 @@
 2023:not reachable from initial state - no encoding given
 2024:not reachable from initial state - no encoding given
 2025:not reachable from initial state - no encoding given
-2026:0001110000000
-2027:1111111000000
-2028:1110100100000
-2029:1010011000000
-2030:1011010110000
-2031:0000000010000
-2032:1000010110000
-2033:0001000010000
-2034:1100101110000
-2035:1010100110000
-2036:0111010110000
-2037:1111101110000
-2038:1101001000000
-2039:1001100100000
-2040:1000001110000
-2041:1100101010000
+2026:1001001000001
+2027:0110001000001
+2028:1010001000001
+2029:1100001000001
+2030:0001110000001
+2031:0010110000001
+2032:0100110000001
+2033:1000110000001
+2034:0011010000001
+2035:0101010000001
+2036:1001010000001
+2037:0110010000001
+2038:1010010000001
+2039:1100010000001
+2040:0011100000001
+2041:0101100000001
 2042:0010000010100
-2043:1001010110000
-2044:0001000100000
-2045:1001010100000
-2046:0010101110000
-2047:0110000100000
-2048:0110000110000
-2049:1011011010000
-2050:1110101010000
-2051:0001111010000
-2052:0001011110000
-2053:1000110100000
-2054:1100000100000
-2055:0011110010000
-2056:0000001100000
+2043:1001100000001
+2044:0110100000001
+2045:1010100000001
+2046:1100100000001
+2047:0111000000001
+2048:1011000000001
+2049:1101000000001
+2050:1110000000001
+2051:0000000011110
+2052:0000000101110
+2053:0000001001110
+2054:0000010001110
+2055:0000100001110
+2056:0001000001110
 2057:0100000010100
 2058:1000000010100
 2059:0000001100100
@@ -2167,7 +2167,7 @@
 2166:not reachable from initial state - no encoding given
 2167:not reachable from initial state - no encoding given
 2168:not reachable from initial state - no encoding given
-2169:0000000000010
+2169:not reachable from initial state - no encoding given
 2170:not reachable from initial state - no encoding given
 2171:not reachable from initial state - no encoding given
 2172:not reachable from initial state - no encoding given
@@ -4094,36 +4094,36 @@
 4093:not reachable from initial state - no encoding given
 4094:not reachable from initial state - no encoding given
 4095:not reachable from initial state - no encoding given
-4096:not reachable from initial state - no encoding given
-4097:1001000110000
-4098:1001100110000
-4099:1010011000000
-4100:1111100000000
-4101:0001000000000
-4102:1010011010000
-4103:1101000110000
-4104:1011010110000
-4105:1110001100000
-4106:1001011110000
-4107:1110111010000
-4108:0000011010000
-4109:0000101100000
-4110:0110111110000
-4111:1000011110000
-4112:1000001100000
-4113:1001101100000
-4114:0000100110000
-4115:0010000110000
-4116:1101010000000
-4117:1111011110000
-4118:0110100010000
-4119:1000100100000
-4120:0010010000000
-4121:0101110010000
-4122:0011101100000
-4123:0101001100000
-4124:0110101100000
-4125:1000001100000
-4126:1001101100000
-4127:0100110000000
-4128:1110101110000
+4096:1001000110000
+4097:1001100110000
+4098:1010011000000
+4099:1111100000000
+4100:0001000000000
+4101:1010011010000
+4102:1101000110000
+4103:1011010110000
+4104:1110001100000
+4105:1001011110000
+4106:1110111010000
+4107:0000011010000
+4108:0000101100000
+4109:0110111110000
+4110:1000011110000
+4111:1000001100000
+4112:1001101100000
+4113:0000100110000
+4114:0010000110000
+4115:1101010000000
+4116:1111011110000
+4117:0110100010000
+4118:1000100100000
+4119:0010010000000
+4120:0101110010000
+4121:0011101100000
+4122:0101001100000
+4123:0110101100000
+4124:1000001100000
+4125:1001101100000
+4126:0100110000000
+4127:0000000000010
+4128:1111001110000

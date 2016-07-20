@@ -97,10 +97,14 @@ int main(int argc, char* argv[]){
 void BFS_to_find_init_state(){
   //first, need to build graph
   buildGraph();
+  std::cout<<"Graph built."<<std::endl;
   unsigned long long count=0;
+  unsigned long long i=0;
 
   for(std::vector<unsigned long long> v : possible_init_states){
     //add v to graph representation
+    i++;
+    std::cout<<"\e[A Testing state ("<<i<<"/"<<possible_init_states.size()<<")"<<std::endl;
     Node* n = new Node(-1);
     vertices.insert(vertices.begin(),n);
     for(unsigned long long u : v){

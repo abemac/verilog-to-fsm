@@ -1,198 +1,198 @@
 0:00000000
 1:00000001
-2:10110110
-3:11010110
-4:11100110
-5:10101001
-6:11001001
-7:01110001
-8:10110001
-9:01101110
-10:10101110
-11:11001110
-12:01110110
-13:00111001
-14:01011001
-15:10011001
-16:01101001
-17:10101101
-18:11001101
-19:11011110
-20:11101110
-21:11110110
-22:11111010
-23:01110101
-24:10110101
-25:11010101
-26:11100101
-27:11111100
-28:00101101
-29:01001101
-30:10001101
+2:11011011
+3:11101011
+4:11110011
+5:11110101
+6:11111001
+7:01111110
+8:10111110
+9:11010111
+10:11100111
+11:01111011
+12:10111011
+13:01111101
+14:10111101
+15:11011101
+16:11101101
+17:01101110
+18:10101110
+19:11001110
+20:01110110
+21:10110010
+22:11010010
+23:10110110
+24:11010110
+25:11100110
+26:01111010
+27:01101010
+28:10101010
+29:11001010
+30:01110010
 31:00011111
 32:00101111
 33:01001111
 34:10001111
-35:10001011
-36:00110011
-37:01010011
-38:10010011
+35:00101110
+36:01001110
+37:10001110
+38:00110110
 39:00110111
 40:01010111
 41:10010111
 42:01100111
-43:01100011
-44:10100011
-45:11000011
-46:00011101
-47:not reachable from initial state - no encoding given
-48:not reachable from initial state - no encoding given
-49:not reachable from initial state - no encoding given
-50:not reachable from initial state - no encoding given
-51:not reachable from initial state - no encoding given
-52:not reachable from initial state - no encoding given
-53:not reachable from initial state - no encoding given
-54:not reachable from initial state - no encoding given
-55:not reachable from initial state - no encoding given
-56:not reachable from initial state - no encoding given
-57:not reachable from initial state - no encoding given
-58:not reachable from initial state - no encoding given
-59:not reachable from initial state - no encoding given
-60:not reachable from initial state - no encoding given
-61:not reachable from initial state - no encoding given
-62:not reachable from initial state - no encoding given
+43:10110001
+44:11010001
+45:11100001
+46:00011110
+47:00100001
+48:01000001
+49:10000001
+50:00000110
+51:10000010
+52:00001100
+53:00010100
+54:00100100
+55:00001010
+56:00010010
+57:00100010
+58:01000010
+59:01000100
+60:10000100
+61:00011000
+62:00101000
 63:00000111
 64:00001011
 65:00010011
 66:00100011
-67:00100001
-68:01000001
-69:10000001
-70:00000110
+67:01101001
+68:10101001
+69:11001001
+70:01110001
 71:01000011
 72:10000011
 73:00001101
 74:00010101
-75:00001010
-76:00010010
-77:00100010
-78:01000010
+75:11000101
+76:00111001
+77:01011001
+78:10011001
 79:01111111
 80:10111111
 81:11011111
 82:11101111
-83:11010111
-84:11100111
-85:01111011
-86:10111011
+83:11000110
+84:00111010
+85:01011010
+86:10011010
 87:11110111
 88:11111011
 89:11111101
 90:11111110
-91:11011011
-92:11101011
-93:11110011
-94:01111101
-95:not reachable from initial state - no encoding given
-96:not reachable from initial state - no encoding given
-97:not reachable from initial state - no encoding given
-98:not reachable from initial state - no encoding given
-99:not reachable from initial state - no encoding given
-100:not reachable from initial state - no encoding given
-101:not reachable from initial state - no encoding given
-102:not reachable from initial state - no encoding given
-103:not reachable from initial state - no encoding given
-104:not reachable from initial state - no encoding given
-105:not reachable from initial state - no encoding given
-106:not reachable from initial state - no encoding given
-107:not reachable from initial state - no encoding given
-108:not reachable from initial state - no encoding given
-109:not reachable from initial state - no encoding given
-110:not reachable from initial state - no encoding given
+91:01010110
+92:10010110
+93:01100110
+94:10100110
+95:10001011
+96:00110011
+97:01010011
+98:10010011
+99:00101101
+100:01001101
+101:10001101
+102:00110101
+103:01100011
+104:10100011
+105:11000011
+106:00011101
+107:01010101
+108:10010101
+109:01100101
+110:10100101
 111:00000011
 112:00000101
 113:00001001
 114:00010001
-115:00000010
-116:00000100
-117:00001000
-118:00010000
-119:11010001
-120:11100001
-121:00011110
-122:00101110
-123:01111010
-124:10111010
-125:11011010
-126:11101010
-127:00110101
-128:01010101
-129:01111001
-130:10111001
-131:11011001
-132:11101001
-133:10010101
-134:01100101
-135:10100101
-136:11000101
-137:11110001
-138:00111110
-139:01011110
-140:10011110
+115:11011001
+116:11101001
+117:11110001
+118:00111110
+119:10101101
+120:11001101
+121:01110101
+122:10110101
+123:11010101
+124:11100101
+125:01111001
+126:10111001
+127:10011011
+128:10100111
+129:00111101
+130:01110011
+131:01011101
+132:10110011
+133:11000111
+134:01101011
+135:00111011
+136:10101011
+137:11010011
+138:10011101
+139:11100011
+140:01101101
 141:00111111
 142:01011111
 143:10011111
 144:01101111
-145:10100111
-146:11000111
-147:00111011
-148:01011011
+145:00011010
+146:00101010
+147:01001010
+148:10001010
 149:10101111
 150:11001111
 151:01110111
 152:10110111
-153:10011011
-154:01101011
-155:10101011
-156:11001011
-157:not reachable from initial state - no encoding given
-158:not reachable from initial state - no encoding given
-159:not reachable from initial state - no encoding given
-160:not reachable from initial state - no encoding given
-161:not reachable from initial state - no encoding given
-162:not reachable from initial state - no encoding given
-163:not reachable from initial state - no encoding given
-164:not reachable from initial state - no encoding given
-165:not reachable from initial state - no encoding given
-166:not reachable from initial state - no encoding given
-167:not reachable from initial state - no encoding given
-168:not reachable from initial state - no encoding given
-169:not reachable from initial state - no encoding given
-170:not reachable from initial state - no encoding given
-171:not reachable from initial state - no encoding given
-172:not reachable from initial state - no encoding given
+153:11110100
+154:11111000
+155:01000110
+156:10000110
+157:00100101
+158:01000101
+159:10000101
+160:00011001
+161:01010001
+162:10010001
+163:01100001
+164:10100001
+165:00101001
+166:01001001
+167:10001001
+168:00110001
+169:11000001
+170:00001110
+171:00010110
+172:00100110
 173:00001111
 174:00010111
 175:00100111
 176:01000111
-177:00100101
-178:01000101
-179:10000101
-180:00011001
+177:01111100
+178:10111100
+179:11011100
+180:11101100
 181:10000111
 182:00011011
 183:00101011
 184:01001011
-185:00101001
-186:01001001
-187:10001001
-188:00110001
-189:not reachable from initial state - no encoding given
-190:not reachable from initial state - no encoding given
+185:10111010
+186:11011010
+187:11101010
+188:11110010
+189:00000010
+190:00000100
 191:not reachable from initial state - no encoding given
 192:not reachable from initial state - no encoding given
-193:not reachable from initial state - no encoding given
-194:not reachable from initial state - no encoding given
+193:00001000
+194:00010000
 195:not reachable from initial state - no encoding given
 196:not reachable from initial state - no encoding given
 197:not reachable from initial state - no encoding given
@@ -202,20 +202,20 @@
 201:not reachable from initial state - no encoding given
 202:not reachable from initial state - no encoding given
 203:11111111
-204:10111101
-205:11011101
-206:11101101
-207:01110011
-208:10110011
-209:11010011
-210:11100011
-211:11110101
-212:11111001
-213:01111110
-214:10111110
-215:00111101
-216:01011101
-217:10011101
-218:01101101
-219:not reachable from initial state - no encoding given
-220:not reachable from initial state - no encoding given
+204:11011110
+205:11101110
+206:11110110
+207:10100010
+208:11000010
+209:00011100
+210:00101100
+211:11111010
+212:11111100
+213:01011110
+214:10011110
+215:00110010
+216:01010010
+217:10010010
+218:01100010
+219:01011011
+220:11001011
