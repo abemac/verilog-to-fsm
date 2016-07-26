@@ -1,0 +1,14 @@
+BENCHMARK: div 
+
+DESCRIPTION:
+Check if a binary number can be divided by 7.
+
+DFA:
+7 states, 2 symbol groups, 0 is the initial state
+
+INPUT:
+Size(MB)  Path
+478	data/binary.in.large
+97	data/binary.in.medium
+20	data/binary.in.small
+1	data/binary.in.train
