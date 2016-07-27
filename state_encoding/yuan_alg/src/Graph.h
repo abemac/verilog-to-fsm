@@ -7,11 +7,15 @@ class Graph{
 
 public:
 
+  Graph();
+
   struct Node {
     int val;
     std::vector<Node*> adj;
+    Node* parent;
+    bool visited;
 
-    
+
   };
   std::vector<Node*> vertices;
 
@@ -19,7 +23,11 @@ public:
     std::vector<int> path;
   };
 
-  std::vector<Path* > * elementary_paths();
+  std::vector<Path*>* elementary_paths();
+
+
+  void build_test_graph();
+
 
 
 
