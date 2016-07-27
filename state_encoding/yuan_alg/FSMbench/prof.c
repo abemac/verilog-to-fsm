@@ -1,53 +1,53 @@
 //
 //  prof.c
-//  FaultFSM 
+//  FaultFSM
 //
 //  Created by Zhijia Zhao on May 26, 2015.
 //  Copyright (c) 2015 Zhijia Zhao. All rights reserved.
 //
 
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <string.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* input params */
 int   state_num;
 int   condition_num;
 int   start_state;
- 
+
 /* runtime data */
-int **dfa;      // dfa table    
+int **dfa;      // dfa table
 char* input;    // input array
 int len;        // input array length
 
-/* to-profile data */	
+/* to-profile data */
 long* w_node;   // node weights
 long** w_edge;  // edge weights
 
-int token(char);
+extern int token(char);
 
-/* 
- * read dfa table from a file 
+/*
+ * read dfa table from a file
  */
 void read_dfa_table(char* fname)
 {
     int i, j;
     char buff_in[100];
     FILE* fp;
-    
+
     fp = fopen(fname, "r");
-    
+
     if(fp == NULL)
         fprintf(stderr, "Unable to read DFA table file %s\n", fname);
 	else
         fprintf(stderr, "Reading DFA table file %s\n", fname);
-    
+
     /* dynamiclly allocate memory for DFA table */
     dfa = malloc(sizeof(int *) * state_num);
 
     for(i = 0; i < state_num; i++)
         dfa[i] = malloc( sizeof(int) * condition_num);
-    
+
     for(i = 0; i < state_num; i++)
         for(j = 0; j < condition_num; j++)
         {
@@ -73,7 +73,7 @@ void load_input(char* fname) {
 	fread(input, 1, len, fp);
 }
 
-/* 
+/*
  * lookup DFA table and return next state.
  */
 int lookup_dfa_table(int current_state, int condition)
@@ -97,12 +97,12 @@ int lookup_dfa_table(int current_state, int condition)
 		fprintf(stderr, "too large condition!\n");
 		return -1;
 	}
-    
+
     return dfa[current_state][condition];
 }
 
 
-/* write state/node weight to file 
+/* write state/node weight to file
  */
 void write_long(char* file, long* array) {
 	FILE* out;
@@ -115,7 +115,7 @@ void write_long(char* file, long* array) {
 }
 
 
-/* write transition/edge weight to file 
+/* write transition/edge weight to file
  */
 void write_longlong(char* file, long** array) {
 	FILE* out;
@@ -131,7 +131,7 @@ void write_longlong(char* file, long** array) {
 
 
 /*
- * do dfa transitions from state 'start_state' 
+ * do dfa transitions from state 'start_state'
  */
 void scan()
 {
@@ -150,20 +150,20 @@ void scan()
 
     int current = start_state;
     int next;
-    
+
     int condition;
-    
+
     long i;
     for(i = 0; i < len; i++)
     {
 		//printf("%d ", current);
         condition = token(input[i]);
-       
+
 		w_edge[current][condition]++;
 
         next = lookup_dfa_table(current, condition);
         current = next;
-        
+
 		w_node[current]++;
     }
 }
@@ -182,10 +182,10 @@ int main(int argc, char** argv)
     condition_num = atoi(argv[3]);
     start_state = atoi(argv[4]);
     input_file = argv[5];
-    
+
     read_dfa_table(dfa_file);
 	load_input(input_file);
-   
+
     scan();
 	char fnode[100];
 	char fedge[100];
@@ -197,5 +197,3 @@ int main(int argc, char** argv)
     return 0;
 
 }
-
-
