@@ -1,10 +1,13 @@
 #ifndef PATH_H
 #define PATH_H
 
-#include <vector>
+#include <list>
 
 class Path{
-  std::vector<int> path;
-}
+public:
+  std::list<int> path;
+  static bool lessThan(const Path* p1, const Path* p2);
+  static bool equalTo(const Path* p1,const Path* p2);
+};
 
 #endif

@@ -3,6 +3,7 @@
 
 #include "Path.h"
 #include <vector>
+#include <set>
 
 class Graph{
 
@@ -15,6 +16,8 @@ public:
     std::vector<Node*> adj;
     Node* parent;
     bool visited;
+    bool visited_2;
+    bool in_path;
     Node(int val_){val=val_;}
 
 
@@ -31,6 +34,7 @@ public:
 
 private:
     std::vector<Node*> vertices;
+    Path* getShortestPathToSelf(Node* n);
 
 
 };

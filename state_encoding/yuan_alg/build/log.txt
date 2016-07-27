@@ -1,6 +1,2 @@
-g++ -std=c++11 -Wall -g -c ../src/Graph.cpp
-../src/Graph.cpp: In member function ‘std::vector<Graph::Path*>* Graph::elementary_paths()’:
-../src/Graph.cpp:15:1: warning: no return statement in function returning non-void [-Wreturn-type]
- }
- ^
-g++ -std=c++11 -Wall -g ../src/main.cpp Graph.o -o ../run/yuan_alg
+g++ -std=c++11 -Wall -g -c ../src/Path.cpp
+g++ -std=c++11 -Wall -g ../src/main.cpp Graph.o Path.o -o ../run/yuan_alg
