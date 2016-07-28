@@ -10,6 +10,7 @@ class Graph{
 public:
 
   Graph(int size);
+  Graph(const Graph& other);
 
   struct Node {
     int val;
@@ -19,7 +20,6 @@ public:
     bool visited_2;
     bool in_path;
     Node(int val_){val=val_;}
-
 
   };
 
@@ -34,6 +34,7 @@ public:
 
 private:
     std::vector<Node*> vertices;
+    std::vector< std::vector<int> > weights;
     Path* getShortestPathToSelf(Node* n);
 
 

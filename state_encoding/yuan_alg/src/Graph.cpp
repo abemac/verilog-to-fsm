@@ -8,6 +8,25 @@ Graph::Graph(int size){
     vertices[i]=nullptr;
   }
 
+  weights = std::vector< std::vector<int> >(size);
+  for(unsigned int i=0;i<weights.size();i++){
+    weights[i] = std::vector<int>(size);
+    for(unsigned int j =0;j<weights[i].size();j++){
+      weights[i][j] =1; //FOR NOW
+    }
+  }
+
+}
+
+Graph::Graph(const Graph& other){
+  vertices=std::vector<Node*> (other.vertices);
+  weights = std::vector< std::vector<int> >(vertices.size());
+  for(unsigned int i=0;i<weights.size();i++){
+    weights[i] = std::vector<int>(vertices.size());
+    for(unsigned int j =0;j<weights[i].size();j++){
+      weights[i][j] =other.weights[i][j];
+    }
+  }
 }
 
 std::vector<Path*>* Graph::elementary_paths(){
@@ -96,39 +115,39 @@ Path * Graph::getShortestPathToSelf(Node* n_){
 
 
 void Graph::build_test_graph(){
-  insertEdge(0,1);
-  insertEdge(1,2);
-  insertEdge(2,1);
-  insertEdge(1,9);
-  insertEdge(9,2);
-  insertEdge(2,3);
-  insertEdge(3,5);
-  insertEdge(3,4);
-  insertEdge(4,1);
-  insertEdge(4,8);
-  insertEdge(5,4);
-  insertEdge(5,7);
-  insertEdge(5,6);
-  insertEdge(6,1);
-  insertEdge(7,1);
-  insertEdge(8,7);
+  // insertEdge(0,1);
+  // insertEdge(1,2);
+  // insertEdge(2,1);
+  // insertEdge(1,9);
+  // insertEdge(9,2);
+  // insertEdge(2,3);
+  // insertEdge(3,5);
+  // insertEdge(3,4);
+  // insertEdge(4,1);
+  // insertEdge(4,8);
+  // insertEdge(5,4);
+  // insertEdge(5,7);
+  // insertEdge(5,6);
+  // insertEdge(6,1);
+  // insertEdge(7,1);
+  // insertEdge(8,7);
 
   //*******************
 
-  // insertEdge(0,1);
-  // insertEdge(1,2);
-  // insertEdge(2,4);
-  // insertEdge(3,5);
-  // insertEdge(3,1);
-  // insertEdge(4,2);
-  // insertEdge(4,3);
-  // insertEdge(5,6);
-  // insertEdge(6,7);
-  // insertEdge(7,5);
-  // insertEdge(7,8);
-  // insertEdge(8,9);
-  // insertEdge(9,7);
-  // insertEdge(9,0);
+  insertEdge(0,1);
+  insertEdge(1,2);
+  insertEdge(2,4);
+  insertEdge(3,5);
+  insertEdge(3,1);
+  insertEdge(4,2);
+  insertEdge(4,3);
+  insertEdge(5,6);
+  insertEdge(6,7);
+  insertEdge(7,5);
+  insertEdge(7,8);
+  insertEdge(8,9);
+  insertEdge(9,7);
+  insertEdge(9,0);
 
 
 }

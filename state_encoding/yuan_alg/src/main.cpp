@@ -21,6 +21,11 @@ int main(){
     std::cout<<"\b}"<<std::endl;
   }
 
+  Graph g2= Graph(g);
+  //g2.write_to_dot();
+
+
+
 
 
 }

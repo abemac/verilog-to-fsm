@@ -24,7 +24,7 @@ int len;        // input array length
 long* w_node;   // node weights
 long** w_edge;  // edge weights
 
-extern int token(char);
+int token(char);
 
 /*
  * read dfa table from a file
