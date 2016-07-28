@@ -70,14 +70,15 @@ Path * Graph::getShortestPathToSelf(Node* n_){
 
     if(n->val == n_->val){//found the shortest cycle
       Path* p = new Path();
-      (p->path).push_back(n->val);
-      n->in_path=true;
+      (p->path).push_front(n->val);
       Node * n2 = n->parent;
       while(n2->val != n->val){
-        (p->path).push_back(n2->val);
+        (p->path).push_front(n2->val);
         n2->in_path=true;
         n2=n2->parent;
       }
+      (p->path).push_front(n2->val);
+      n2->in_path=true;
       return p;
 
     }
@@ -111,6 +112,25 @@ void Graph::build_test_graph(){
   insertEdge(6,1);
   insertEdge(7,1);
   insertEdge(8,7);
+
+  //*******************
+
+  // insertEdge(0,1);
+  // insertEdge(1,2);
+  // insertEdge(2,4);
+  // insertEdge(3,5);
+  // insertEdge(3,1);
+  // insertEdge(4,2);
+  // insertEdge(4,3);
+  // insertEdge(5,6);
+  // insertEdge(6,7);
+  // insertEdge(7,5);
+  // insertEdge(7,8);
+  // insertEdge(8,9);
+  // insertEdge(9,7);
+  // insertEdge(9,0);
+
+
 }
 
 
