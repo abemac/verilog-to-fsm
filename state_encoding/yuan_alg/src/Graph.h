@@ -31,10 +31,12 @@ public:
 
   void build_test_graph();
   void write_to_dot();
+  void delete_min_edges();
 
 private:
     std::vector<Node*> vertices;
     std::vector< std::vector<int> > weights;
+    std::vector<Path*> paths;
     Path* getShortestPathToSelf(Node* n);
 
 

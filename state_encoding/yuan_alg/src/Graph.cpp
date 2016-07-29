@@ -27,6 +27,11 @@ Graph::Graph(const Graph& other){
       weights[i][j] =other.weights[i][j];
     }
   }
+  paths = std::vector<Path*>(other.paths);
+}
+
+void Graph::delete_min_edges(){
+  
 }
 
 std::vector<Path*>* Graph::elementary_paths(){
@@ -39,7 +44,7 @@ std::vector<Path*>* Graph::elementary_paths(){
   std::list<Node*> queue;
   queue.push_back(vertices[0]);
   queue.front()->visited=true;
-  std::vector<Path*>* paths= new std::vector<Path*>();
+  //std::vector<Path*>* paths= new std::vector<Path*>();
   while(!queue.empty()){
     Node * n = queue.front();
     queue.pop_front();
@@ -47,13 +52,13 @@ std::vector<Path*>* Graph::elementary_paths(){
       Path* p = getShortestPathToSelf(n);
       if(p!=nullptr){
         bool insert=true;
-        for(Path* po : *paths){
+        for(Path* po : paths){
           if(Path::equalTo(po,p)){
             insert=false;
           }
         }
         if(insert){
-          paths->push_back(p);
+          paths.push_back(p);
         }
       }
     //}
@@ -65,7 +70,7 @@ std::vector<Path*>* Graph::elementary_paths(){
     }
   }
 
-  return paths;
+  return &paths;
 
 }
 

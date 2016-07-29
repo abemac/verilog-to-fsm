@@ -23,6 +23,7 @@ int main(){
 
   Graph g2= Graph(g);
   //g2.write_to_dot();
+  g2.delete_min_edges();
 
 
 
