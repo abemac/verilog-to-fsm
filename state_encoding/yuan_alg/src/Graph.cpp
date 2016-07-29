@@ -40,7 +40,7 @@ void Graph::delete_min_edges(){
       int del_from;
       int del_to;
 
-      
+      //start here monday -- delete edges, not worry about disconnections
 
 
 
