@@ -31,7 +31,24 @@ Graph::Graph(const Graph& other){
 }
 
 void Graph::delete_min_edges(){
-  
+  //in elementary_paths with odd number, delete min edge
+  bool deleted [vertices.size()][vertices.size()];
+  for(Path * p : paths){
+    if(p->path.size()%2==0){//odd number of EDGES
+      //delete one with min weight from graph
+      bool already_deleted_from=false;
+      int del_from;
+      int del_to;
+
+      
+
+
+
+
+    }
+  }
+
+
 }
 
 std::vector<Path*>* Graph::elementary_paths(){
