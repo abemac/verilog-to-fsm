@@ -36,6 +36,112 @@ Graph::Graph(const Graph& other){
   paths = std::vector<Path*>(other.paths);
 }
 
+void Graph::encode_BFS(){
+  createCodeVector();
+  for(CodeLevel * cl : codeLevels){
+    for(Code * c : cl->codes){
+      std::cout<<(c->val)<<" ";
+    }
+    std::cout<<std::endl;
+  }
+
+}
+
+
+unsigned long long Graph::getBestNextEncoding(unsigned long long current_enc){
+  Code* current=nullptr;
+  unsigned long long loc;
+  for(unsigned long long j=0;j<codeLevels.size() && current==nullptr;j++){
+    for(Code* c : codeLevels[j]->codes){
+      if(c->val == current_enc){
+        current=c;
+        loc=j;
+      }
+    }
+  }
+
+  unsigned long long distanceAway=1;
+  while(distanceAway <= numFlipFlops){
+    if(distanceAway==2){//try in same column first
+      for(Code * cc : codeLevels[loc]->codes){
+        if(cc->used == false){
+          cc->used=true;
+          return cc->val;
+        }
+      }
+    }
+    //otherwise, try to the right and left
+    if(loc<codeLevels.size()-distanceAway){
+      for(Code * c : codeLevels[loc+distanceAway]->codes){
+        if(c->used==false){
+          c->used=true;
+          return c->val;
+        }
+      }
+    }
+    if(loc>distanceAway){
+      for(Code * c : codeLevels[loc-distanceAway]->codes){
+        if(c->used==false){
+          c->used=true;
+          return c->val;
+        }
+      }
+    }
+
+    distanceAway++;
+
+  }
+  return -1;
+}
+
+void Graph::createCodeVector(){
+  //first, find how many flip flops
+  numFlipFlops=0;
+  unsigned long long count=1;
+  while(count<vertices.size()){
+    numFlipFlops++;
+    count<<=1;//multiply by two
+  }
+
+  usedCodes=std::vector<bool>(count);
+
+  //second, create Code vector.
+  CodeLevel* cl1=new CodeLevel();
+  cl1->codes.push_back(new Code(0));
+  usedCodes[0]=true;
+  codeLevels.push_back(cl1);
+
+  unsigned long long workingVal=0;
+  unsigned long long baseVal=0;
+  while(codeLevels.size()<numFlipFlops+1){
+    CodeLevel * prev = codeLevels.back();
+    CodeLevel * next = new CodeLevel();
+    for(Code * c : prev->codes){
+      baseVal=c->val;
+      for(unsigned long long i=0;i<numFlipFlops;i++){
+        workingVal=baseVal | (1<<i);
+        if(!usedCodes[workingVal]){
+          next->codes.push_back(new Code(workingVal));
+          usedCodes[workingVal]=true;
+        }
+      }
+    }
+
+    codeLevels.push_back(next);
+
+  }
+
+  // for(CodeLevel * cl : codeLevels){
+  //   for(Code * c : cl->codes){
+  //     std::cout<<(c->val)<<" ";
+  //   }
+  //   std::cout<<std::endl;
+  // }
+
+
+
+}
+
 void Graph::delete_min_edges(){
   //in elementary_paths with odd number, delete min edge
   bool deleted [vertices.size()][vertices.size()];

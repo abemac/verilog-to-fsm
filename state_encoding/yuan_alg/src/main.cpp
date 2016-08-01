@@ -25,6 +25,7 @@ int main(){
   //g2.write_to_dot();
   g2.delete_min_edges();
   g2.write_to_dot_ud();
+  g2.encode_BFS();
 
 
 
