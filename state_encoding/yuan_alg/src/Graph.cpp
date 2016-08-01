@@ -44,10 +44,10 @@ void Graph::delete_min_edges(){
       deleted[i][j]=false;
     }
   }
-  weights[1][9]=0;
-  weights[1][2]=0;
-  weights[5][7]=0;
-  weights[5][6]=0;
+  // weights[1][9]=0;
+  // weights[1][2]=0;
+  // weights[5][7]=0;
+  // weights[5][6]=0;
   for(Path * p : paths){
     if(p->path.size()%2==0){//odd number of EDGES
       //delete one with min weight from graph
@@ -76,9 +76,19 @@ void Graph::delete_min_edges(){
         bool deleted2 = false;
         for(unsigned int j=0;j< (vertices[del_from]->adj).size() && !deleted2;j++){
           if(del_to ==  (vertices[del_from]->adj)[j]->val){
+            //delete parent pointer too
+            bool deleted3=false;
+            for(unsigned int k =0;k<(vertices[del_from]->adj)[j]->par.size() && !deleted3;k++){
+              if(del_from == (vertices[del_from]->adj)[j]->par[k]->val){
+                (vertices[del_from]->adj)[j]->par.erase(vertices[del_from]->adj[j]->par.begin()+k);
+                deleted3=true;
+              }
+            }
+
             (vertices[del_from]->adj).erase(vertices[del_from]->adj.begin()+j);
             deleted2=true;
             deleted[del_from][del_to]=true;
+
           }
         }
       }
