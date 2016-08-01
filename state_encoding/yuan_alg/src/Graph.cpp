@@ -2,6 +2,12 @@
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <limits>
+#include <string>
+#include <iterator>
+
+int Graph::times_graph_printed=0;
+
 Graph::Graph(int size){
   vertices = std::vector<Node*>(size);
   for(unsigned int i =0; i< vertices.size();i++){
@@ -33,14 +39,49 @@ Graph::Graph(const Graph& other){
 void Graph::delete_min_edges(){
   //in elementary_paths with odd number, delete min edge
   bool deleted [vertices.size()][vertices.size()];
+  for(unsigned int i =0;i<vertices.size();i++){
+    for(unsigned int j =0;j<vertices.size();j++){
+      deleted[i][j]=false;
+    }
+  }
+  weights[1][9]=0;
+  weights[1][2]=0;
+  weights[5][7]=0;
+  weights[5][6]=0;
   for(Path * p : paths){
     if(p->path.size()%2==0){//odd number of EDGES
       //delete one with min weight from graph
       bool already_deleted_from=false;
       int del_from;
       int del_to;
+      int current_weight=std::numeric_limits<int>::max();
+      unsigned int i =0;
+      auto itr = p->path.begin();
+      while(i <= p->path.size()-2 && !already_deleted_from){
+        //std::cout<<*itr<<"   "<<*(std::next(itr))<<std::endl;
+        if(weights[ *itr ][ *(std::next(itr)) ] < current_weight){
+          del_from=*itr;
+          del_to=*(std::next(itr));
+          current_weight=weights[del_from][del_to];
+        }
+        if(deleted[ *itr ][ *(std::next(itr))  ]){
+          already_deleted_from=true;
+        }
+        i++;
+        itr++;
+      }
 
-      //start here monday -- delete edges, not worry about disconnections
+      if(!already_deleted_from){
+        //std::cout<<"here"<<std::endl;
+        bool deleted2 = false;
+        for(unsigned int j=0;j< (vertices[del_from]->adj).size() && !deleted2;j++){
+          if(del_to ==  (vertices[del_from]->adj)[j]->val){
+            (vertices[del_from]->adj).erase(vertices[del_from]->adj.begin()+j);
+            deleted2=true;
+            deleted[del_from][del_to]=true;
+          }
+        }
+      }
 
 
 
@@ -137,39 +178,39 @@ Path * Graph::getShortestPathToSelf(Node* n_){
 
 
 void Graph::build_test_graph(){
-  // insertEdge(0,1);
-  // insertEdge(1,2);
-  // insertEdge(2,1);
-  // insertEdge(1,9);
-  // insertEdge(9,2);
-  // insertEdge(2,3);
-  // insertEdge(3,5);
-  // insertEdge(3,4);
-  // insertEdge(4,1);
-  // insertEdge(4,8);
-  // insertEdge(5,4);
-  // insertEdge(5,7);
-  // insertEdge(5,6);
-  // insertEdge(6,1);
-  // insertEdge(7,1);
-  // insertEdge(8,7);
-
-  //*******************
-
   insertEdge(0,1);
   insertEdge(1,2);
-  insertEdge(2,4);
+  insertEdge(2,1);
+  insertEdge(1,9);
+  insertEdge(9,2);
+  insertEdge(2,3);
   insertEdge(3,5);
-  insertEdge(3,1);
-  insertEdge(4,2);
-  insertEdge(4,3);
+  insertEdge(3,4);
+  insertEdge(4,1);
+  insertEdge(4,8);
+  insertEdge(5,4);
+  insertEdge(5,7);
   insertEdge(5,6);
-  insertEdge(6,7);
-  insertEdge(7,5);
-  insertEdge(7,8);
-  insertEdge(8,9);
-  insertEdge(9,7);
-  insertEdge(9,0);
+  insertEdge(6,1);
+  insertEdge(7,1);
+  insertEdge(8,7);
+
+  //*******************
+  //
+  // insertEdge(0,1);
+  // insertEdge(1,2);
+  // insertEdge(2,4);
+  // insertEdge(3,5);
+  // insertEdge(3,1);
+  // insertEdge(4,2);
+  // insertEdge(4,3);
+  // insertEdge(5,6);
+  // insertEdge(6,7);
+  // insertEdge(7,5);
+  // insertEdge(7,8);
+  // insertEdge(8,9);
+  // insertEdge(9,7);
+  // insertEdge(9,0);
 
 
 }
@@ -177,7 +218,11 @@ void Graph::build_test_graph(){
 
 void Graph::write_to_dot(){
   std::ofstream FILE;
-  FILE.open("graph.dot");
+  std::string path ="graph";
+  path.append(std::to_string(Graph::times_graph_printed));
+  Graph::times_graph_printed++;
+  path.append(".dot");
+  FILE.open(path);
   FILE<<"digraph fsm {\n";
   for(Node* n : vertices){
     for(Node* adj : n->adj){
@@ -187,6 +232,28 @@ void Graph::write_to_dot(){
   FILE<<"}";
   FILE.close();
 }
+
+
+void Graph::write_to_dot_ud(){
+  std::ofstream FILE;
+  std::string path ="graph";
+  path.append(std::to_string(Graph::times_graph_printed));
+  Graph::times_graph_printed++;
+  path.append(".dot");
+  FILE.open(path);
+  FILE<<"graph fsm {\n";
+  for(Node* n : vertices){
+    for(Node* adj : n->adj){
+      FILE<<(n->val)<<" -- "<<adj->val<<";\n";
+    }
+  }
+  FILE<<"}";
+  FILE.close();
+
+
+
+}
+
 
 void Graph::insertEdge(int startVal, int endVal){
   Node * ns = vertices[startVal];
@@ -203,6 +270,7 @@ void Graph::insertEdge(int startVal, int endVal){
   }
 
   (ns->adj).push_back(ne);
+  (ne->par).push_back(ns);
 
 
 

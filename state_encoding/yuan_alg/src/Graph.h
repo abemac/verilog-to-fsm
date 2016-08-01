@@ -15,6 +15,7 @@ public:
   struct Node {
     int val;
     std::vector<Node*> adj;
+    std::vector<Node*> par;
     Node* parent;
     bool visited;
     bool visited_2;
@@ -31,6 +32,7 @@ public:
 
   void build_test_graph();
   void write_to_dot();
+  void write_to_dot_ud();
   void delete_min_edges();
 
 private:
@@ -38,6 +40,7 @@ private:
     std::vector< std::vector<int> > weights;
     std::vector<Path*> paths;
     Path* getShortestPathToSelf(Node* n);
+    static int times_graph_printed;
 
 
 };
