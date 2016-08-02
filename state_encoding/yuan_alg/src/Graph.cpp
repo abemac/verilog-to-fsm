@@ -107,17 +107,18 @@ unsigned long long Graph::getBestNextEncoding(unsigned long long current_enc){
         }
       }
     }
-    //otherwise, try to the right and left
-    if(loc<codeLevels.size()-distanceAway){
-      for(Code * c : codeLevels[loc+distanceAway]->codes){
+    //otherwise, try to the left then right
+
+    if(loc>distanceAway){
+      for(Code * c : codeLevels[loc-distanceAway]->codes){
         if(c->used==false){
           c->used=true;
           return c->val;
         }
       }
     }
-    if(loc>distanceAway){
-      for(Code * c : codeLevels[loc-distanceAway]->codes){
+    if(loc<codeLevels.size()-distanceAway){
+      for(Code * c : codeLevels[loc+distanceAway]->codes){
         if(c->used==false){
           c->used=true;
           return c->val;
@@ -417,12 +418,12 @@ void Graph::write_to_dot_result(){
   FILE<<"digraph fsm {\n";
   for(Node* n : vertices){
     for(Node* adj : n->adj){
-      FILE<<"\""<<(n->enc1)<<"\\n(";
+      FILE<<"\""<<(n->val)<<"\\n(";
       for(int i = numFlipFlops-1; i>=0;i--){
         unsigned int x = ((n->enc1) & (1<<i))>>i;
         FILE<<x;
       }
-      FILE<<")\" -> \""<<adj->enc1<<"\\n(";
+      FILE<<")\" -> \""<<adj->val<<"\\n(";
       for(int i = numFlipFlops-1; i>=0;i--){
         unsigned int x = ((adj->enc1) & (1<<i))>>i;
         FILE<<x;
