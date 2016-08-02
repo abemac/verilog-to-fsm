@@ -35,6 +35,7 @@ public:
   void build_test_graph();
   void write_to_dot();
   void write_to_dot_ud();
+  void write_to_dot_result();
   void delete_min_edges();
   void encode_BFS();
   void encode_DFS();
@@ -71,6 +72,7 @@ private:
     std::vector<CodeLevel*> codeLevels;
 
     unsigned long long numFlipFlops;
+    Code * findCode(unsigned long long val);
 
 
 };

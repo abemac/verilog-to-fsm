@@ -38,15 +38,52 @@ Graph::Graph(const Graph& other){
 
 void Graph::encode_BFS(){
   createCodeVector();
-  for(CodeLevel * cl : codeLevels){
-    for(Code * c : cl->codes){
-      std::cout<<(c->val)<<" ";
+  for(Node * v : vertices){
+    v->visited=false;
+  }
+  std::list<Node*> queue;
+
+  //TODO choose node with max weight
+  queue.push_back(vertices[0]);
+  vertices[0]->visited=true;
+  vertices[0]->enc1=0;
+  vertices[0]->visited=true;
+  findCode(0)->used=true;
+
+  while(queue.size()!=0){
+    Node * n = queue.front();
+
+    for(Node* n2 : n->adj){
+      if(n2->visited==false){
+        n2->enc1 = getBestNextEncoding(n->enc1);
+        n2->visited =true;
+        queue.push_back(n2);
+      }
     }
-    std::cout<<std::endl;
+    for(Node* n3 : n->par){
+      if(n3->visited==false){
+        n3->enc1 = getBestNextEncoding(n->enc1);
+        n3->visited =true;
+        queue.push_back(n3);
+      }
+    }
+
+    queue.pop_front();
   }
 
 }
 
+
+Graph::Code * Graph::findCode(unsigned long long val_){
+  for(CodeLevel* cl : codeLevels){
+    for(Code* c : cl->codes){
+      if(c->val == val_){
+        return c;
+      }
+    }
+  }
+  return nullptr;
+}
 
 unsigned long long Graph::getBestNextEncoding(unsigned long long current_enc){
   Code* current=nullptr;
@@ -370,6 +407,35 @@ void Graph::write_to_dot_ud(){
 
 }
 
+void Graph::write_to_dot_result(){
+  std::ofstream FILE;
+  std::string path ="graph";
+  path.append(std::to_string(Graph::times_graph_printed));
+  Graph::times_graph_printed++;
+  path.append(".dot");
+  FILE.open(path);
+  FILE<<"digraph fsm {\n";
+  for(Node* n : vertices){
+    for(Node* adj : n->adj){
+      FILE<<"\""<<(n->enc1)<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->enc1) & (1<<i))>>i;
+        FILE<<x;
+      }
+      FILE<<")\" -> \""<<adj->enc1<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((adj->enc1) & (1<<i))>>i;
+        FILE<<x;
+      }
+
+
+      FILE<<")\";\n";
+    }
+  }
+  FILE<<"}";
+  FILE.close();
+
+}
 
 void Graph::insertEdge(int startVal, int endVal){
   Node * ns = vertices[startVal];
