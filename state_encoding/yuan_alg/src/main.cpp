@@ -20,13 +20,13 @@ int main(){
     }
     std::cout<<"\b}"<<std::endl;
   }
-
-  Graph g2= Graph(g);
   //g2.write_to_dot();
-  g2.delete_min_edges();
-  g2.write_to_dot_ud();
-  g2.encode_BFS();
-  g2.write_to_dot_result();
+  g.delete_min_edges();
+  g.write_to_dot_ud();
+  g.encode_BFS();
+  g.write_to_dot_result();
+  g.encode_DFS();
+  g.write_to_dot_result_DFS();
 
 
 

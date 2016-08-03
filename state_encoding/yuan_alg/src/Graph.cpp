@@ -5,6 +5,7 @@
 #include <limits>
 #include <string>
 #include <iterator>
+#include <bitset>
 
 int Graph::times_graph_printed=0;
 
@@ -24,16 +25,46 @@ Graph::Graph(int size){
 
 }
 
-Graph::Graph(const Graph& other){
-  vertices=std::vector<Node*> (other.vertices);
-  weights = std::vector< std::vector<int> >(vertices.size());
-  for(unsigned int i=0;i<weights.size();i++){
-    weights[i] = std::vector<int>(vertices.size());
-    for(unsigned int j =0;j<weights[i].size();j++){
-      weights[i][j] =other.weights[i][j];
-    }
+void Graph::encode_DFS(){
+  for(Code* c : allCodes){
+    c->used=false;
   }
-  paths = std::vector<Path*>(other.paths);
+
+  for(Node * v : vertices){
+    v->visited=false;
+  }
+  std::list<Node*> stack;
+
+  //TODO choose node with max weight
+  stack.push_back(vertices[0]);
+  vertices[0]->visited=true;
+  vertices[0]->enc2=0;
+  vertices[0]->visited=true;
+  allCodes[0]->used=true;
+
+  while(stack.size()!=0){
+    Node * n = stack.back();
+    stack.pop_back();
+
+    for(Node* n2 : n->adj_mod){
+      if(n2->visited==false){
+        n2->enc2 = getBestNextEncoding(n->enc2);
+        n2->visited =true;
+        stack.push_back(n2);
+      }
+    }
+    for(Node* n3 : n->par_mod){
+      if(n3->visited==false){
+        n3->enc2 = getBestNextEncoding(n->enc2);
+        n3->visited =true;
+        stack.push_back(n3);
+      }
+    }
+
+
+  }
+
+
 }
 
 void Graph::encode_BFS(){
@@ -48,19 +79,19 @@ void Graph::encode_BFS(){
   vertices[0]->visited=true;
   vertices[0]->enc1=0;
   vertices[0]->visited=true;
-  findCode(0)->used=true;
+  allCodes[0]->used=true;
 
   while(queue.size()!=0){
     Node * n = queue.front();
 
-    for(Node* n2 : n->adj){
+    for(Node* n2 : n->adj_mod){
       if(n2->visited==false){
         n2->enc1 = getBestNextEncoding(n->enc1);
         n2->visited =true;
         queue.push_back(n2);
       }
     }
-    for(Node* n3 : n->par){
+    for(Node* n3 : n->par_mod){
       if(n3->visited==false){
         n3->enc1 = getBestNextEncoding(n->enc1);
         n3->visited =true;
@@ -73,59 +104,15 @@ void Graph::encode_BFS(){
 
 }
 
-
-Graph::Code * Graph::findCode(unsigned long long val_){
-  for(CodeLevel* cl : codeLevels){
-    for(Code* c : cl->codes){
-      if(c->val == val_){
-        return c;
-      }
-    }
-  }
-  return nullptr;
-}
-
 unsigned long long Graph::getBestNextEncoding(unsigned long long current_enc){
-  Code* current=nullptr;
-  unsigned long long loc;
-  for(unsigned long long j=0;j<codeLevels.size() && current==nullptr;j++){
-    for(Code* c : codeLevels[j]->codes){
-      if(c->val == current_enc){
-        current=c;
-        loc=j;
-      }
-    }
-  }
-
   unsigned long long distanceAway=1;
   while(distanceAway <= numFlipFlops){
-    if(distanceAway==2){//try in same column first
-      for(Code * cc : codeLevels[loc]->codes){
-        if(cc->used == false){
-          cc->used=true;
-          return cc->val;
-        }
+    for(Code * c : codeLevels[current_enc]->operator[](distanceAway)->codes){
+      if(c->used==false){
+        c->used=true;
+        return c->val;
       }
     }
-    //otherwise, try to the left then right
-
-    if(loc>distanceAway){
-      for(Code * c : codeLevels[loc-distanceAway]->codes){
-        if(c->used==false){
-          c->used=true;
-          return c->val;
-        }
-      }
-    }
-    if(loc<codeLevels.size()-distanceAway){
-      for(Code * c : codeLevels[loc+distanceAway]->codes){
-        if(c->used==false){
-          c->used=true;
-          return c->val;
-        }
-      }
-    }
-
     distanceAway++;
 
   }
@@ -142,40 +129,58 @@ void Graph::createCodeVector(){
   }
 
   usedCodes=std::vector<bool>(count);
+  for(unsigned long long j=0;j<usedCodes.size();j++){
+    usedCodes[j]=false;
+  }
+  allCodes=std::vector<Code*>(count);
+  for(unsigned long long i =0; i<count;i++){
+    allCodes[i]=new Code(i);
+  }
+  codeLevels=std::vector< std::vector<CodeLevel*>* >();
 
-  //second, create Code vector.
-  CodeLevel* cl1=new CodeLevel();
-  cl1->codes.push_back(new Code(0));
-  usedCodes[0]=true;
-  codeLevels.push_back(cl1);
+  for(unsigned long long num=0;num<count;num++){
+    for(unsigned long long j=0;j<usedCodes.size();j++){
+      usedCodes[j]=false;
+    }
+    std::vector<CodeLevel*>* codeLevel_current= new std::vector<CodeLevel*>;
+    CodeLevel* cl1=new CodeLevel();
+    cl1->codes.push_back(allCodes[num]);
+    usedCodes[num]=true;
+    codeLevel_current->push_back(cl1);
 
-  unsigned long long workingVal=0;
-  unsigned long long baseVal=0;
-  while(codeLevels.size()<numFlipFlops+1){
-    CodeLevel * prev = codeLevels.back();
-    CodeLevel * next = new CodeLevel();
-    for(Code * c : prev->codes){
-      baseVal=c->val;
-      for(unsigned long long i=0;i<numFlipFlops;i++){
-        workingVal=baseVal | (1<<i);
-        if(!usedCodes[workingVal]){
-          next->codes.push_back(new Code(workingVal));
-          usedCodes[workingVal]=true;
+    unsigned long long workingVal=0;
+    unsigned long long baseVal=0;
+    while(codeLevel_current->size()<numFlipFlops+1){
+      CodeLevel * prev = codeLevel_current->back();
+      CodeLevel * next = new CodeLevel();
+      for(Code * c : prev->codes){
+        baseVal=c->val;
+        for(unsigned long long i=0;i<numFlipFlops;i++){
+          workingVal=baseVal ^ (1<<i);
+          if(!usedCodes[workingVal]){
+            next->codes.push_back(allCodes[workingVal]);
+            usedCodes[workingVal]=true;
+          }
         }
       }
+
+      codeLevel_current->push_back(next);
+
     }
-
-    codeLevels.push_back(next);
-
+    codeLevels.push_back(codeLevel_current);
   }
 
-  // for(CodeLevel * cl : codeLevels){
-  //   for(Code * c : cl->codes){
-  //     std::cout<<(c->val)<<" ";
+
+  // for(std::vector<CodeLevel*> * v : codeLevels){
+  //   for(CodeLevel* cl: *v ){
+  //     for(Code * c : cl->codes){
+  //       std::bitset<4> b (c->val);
+  //       std::cout<<b<<" ";
+  //     }
+  //     std::cout<<std::endl;
   //   }
   //   std::cout<<std::endl;
   // }
-
 
 
 }
@@ -218,18 +223,18 @@ void Graph::delete_min_edges(){
       if(!already_deleted_from){
         //std::cout<<"here"<<std::endl;
         bool deleted2 = false;
-        for(unsigned int j=0;j< (vertices[del_from]->adj).size() && !deleted2;j++){
-          if(del_to ==  (vertices[del_from]->adj)[j]->val){
+        for(unsigned int j=0;j< (vertices[del_from]->adj_mod).size() && !deleted2;j++){
+          if(del_to ==  (vertices[del_from]->adj_mod)[j]->val){
             //delete parent pointer too
             bool deleted3=false;
-            for(unsigned int k =0;k<(vertices[del_from]->adj)[j]->par.size() && !deleted3;k++){
-              if(del_from == (vertices[del_from]->adj)[j]->par[k]->val){
-                (vertices[del_from]->adj)[j]->par.erase(vertices[del_from]->adj[j]->par.begin()+k);
+            for(unsigned int k =0;k<(vertices[del_from]->adj_mod)[j]->par_mod.size() && !deleted3;k++){
+              if(del_from == (vertices[del_from]->adj_mod)[j]->par_mod[k]->val){
+                (vertices[del_from]->adj_mod)[j]->par_mod.erase(vertices[del_from]->adj_mod[j]->par_mod.begin()+k);
                 deleted3=true;
               }
             }
 
-            (vertices[del_from]->adj).erase(vertices[del_from]->adj.begin()+j);
+            (vertices[del_from]->adj_mod).erase(vertices[del_from]->adj_mod.begin()+j);
             deleted2=true;
             deleted[del_from][del_to]=true;
 
@@ -397,8 +402,8 @@ void Graph::write_to_dot_ud(){
   FILE.open(path);
   FILE<<"graph fsm {\n";
   for(Node* n : vertices){
-    for(Node* adj : n->adj){
-      FILE<<(n->val)<<" -- "<<adj->val<<";\n";
+    for(Node* adj_mod : n->adj_mod){
+      FILE<<(n->val)<<" -- "<<adj_mod->val<<";\n";
     }
   }
   FILE<<"}";
@@ -438,6 +443,36 @@ void Graph::write_to_dot_result(){
 
 }
 
+void Graph::write_to_dot_result_DFS(){
+  std::ofstream FILE;
+  std::string path ="graph";
+  path.append(std::to_string(Graph::times_graph_printed));
+  Graph::times_graph_printed++;
+  path.append(".dot");
+  FILE.open(path);
+  FILE<<"digraph fsm {\n";
+  for(Node* n : vertices){
+    for(Node* adj : n->adj){
+      FILE<<"\""<<(n->val)<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->enc2) & (1<<i))>>i;
+        FILE<<x;
+      }
+      FILE<<")\" -> \""<<adj->val<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((adj->enc2) & (1<<i))>>i;
+        FILE<<x;
+      }
+
+
+      FILE<<")\";\n";
+    }
+  }
+  FILE<<"}";
+  FILE.close();
+
+}
+
 void Graph::insertEdge(int startVal, int endVal){
   Node * ns = vertices[startVal];
 
@@ -453,8 +488,9 @@ void Graph::insertEdge(int startVal, int endVal){
   }
 
   (ns->adj).push_back(ne);
+  (ns->adj_mod).push_back(ne);
   (ne->par).push_back(ns);
-
+  (ne->par_mod).push_back(ns);
 
 
 }

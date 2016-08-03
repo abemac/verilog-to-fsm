@@ -10,12 +10,13 @@ class Graph{
 public:
 
   Graph(int size);
-  Graph(const Graph& other);
 
   struct Node {
     int val;
     std::vector<Node*> adj;
+    std::vector<Node*> adj_mod;
     std::vector<Node*> par;
+    std::vector<Node*> par_mod;
     Node* parent;
     bool visited;
     bool visited_2;
@@ -36,6 +37,7 @@ public:
   void write_to_dot();
   void write_to_dot_ud();
   void write_to_dot_result();
+  void write_to_dot_result_DFS();
   void delete_min_edges();
   void encode_BFS();
   void encode_DFS();
@@ -69,10 +71,12 @@ private:
     std::vector<bool> usedCodes;
 
 
-    std::vector<CodeLevel*> codeLevels;
+    std::vector< std::vector<CodeLevel*>* > codeLevels;
 
     unsigned long long numFlipFlops;
-    Code * findCode(unsigned long long val);
+
+    //////////
+    std::vector<Code*> allCodes;
 
 
 };

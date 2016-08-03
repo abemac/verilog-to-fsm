@@ -1,1 +1,2 @@
+g++ -std=c++11 -Wall -g -c ../src/Graph.cpp
 g++ -std=c++11 -Wall -g ../src/main.cpp Graph.o Path.o -o ../run/yuan_alg
