@@ -26,6 +26,7 @@ Graph::Graph(int size){
 }
 
 void Graph::encode_DFS(){
+  //weights[3][5]=9000;
   for(Code* c : allCodes){
     c->used=false;
   }
@@ -35,12 +36,24 @@ void Graph::encode_DFS(){
   }
   std::list<Node*> stack;
 
-  //TODO choose node with max weight
-  stack.push_back(vertices[0]);
-  vertices[0]->visited=true;
-  vertices[0]->enc2=0;
-  vertices[0]->visited=true;
-  allCodes[0]->used=true;
+  int sum=0;
+  int loc=0;
+
+  for(unsigned int i =0;i<weights.size();i++){
+    int tmp_sum=0;
+    for(int j : weights[i]){
+      tmp_sum+=j;
+    }
+    if(tmp_sum > sum){
+      sum=tmp_sum;
+      loc=i;
+    }
+  }
+  stack.push_back(vertices[loc]);
+  vertices[loc]->visited=true;
+  vertices[loc]->enc2=0;
+  vertices[loc]->visited=true;
+  allCodes[loc]->used=true;
 
   while(stack.size()!=0){
     Node * n = stack.back();
@@ -74,12 +87,30 @@ void Graph::encode_BFS(){
   }
   std::list<Node*> queue;
 
-  //TODO choose node with max weight
-  queue.push_back(vertices[0]);
-  vertices[0]->visited=true;
-  vertices[0]->enc1=0;
-  vertices[0]->visited=true;
-  allCodes[0]->used=true;
+  //choose node with max weight
+  //whichever row in weights has max sum is vertix with most weight
+
+  int sum=0;
+  int loc=0;
+
+  for(unsigned int i =0;i<weights.size();i++){
+    int tmp_sum=0;
+    for(int j : weights[i]){
+      tmp_sum+=j;
+    }
+    if(tmp_sum > sum){
+      sum=tmp_sum;
+      loc=i;
+    }
+  }
+
+
+
+  queue.push_back(vertices[loc]);
+  vertices[loc]->visited=true;
+  vertices[loc]->enc1=0;
+  vertices[loc]->visited=true;
+  allCodes[loc]->used=true;
 
   while(queue.size()!=0){
     Node * n = queue.front();
