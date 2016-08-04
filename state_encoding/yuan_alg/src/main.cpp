@@ -24,9 +24,10 @@ int main(){
   g.delete_min_edges();
   g.write_to_dot_ud();
   g.encode_BFS();
-  g.write_to_dot_result();
+  g.write_to_dot_result_BFS();
   g.encode_DFS();
   g.write_to_dot_result_DFS();
+  g.choose_best_encoding();
 
 
 

@@ -25,6 +25,23 @@ Graph::Graph(int size){
 
 }
 
+void Graph::choose_best_encoding(){
+  int num_bit_flips_BFS=0;
+  int num_bit_flips_DFS=0;
+  int num_bit_flips_BFS_weighted=0;
+  int num_bit_flips_DFS_weighted=0;
+
+
+  for(Node *n : vertices){
+    unsigned long long enc1=n->enc1;
+    unsigned long long enc2=n->enc2;
+
+    //calculate the bit flips here
+  }
+
+
+}
+
 void Graph::encode_DFS(){
   //weights[3][5]=9000;
   for(Code* c : allCodes){
@@ -444,7 +461,7 @@ void Graph::write_to_dot_ud(){
 
 }
 
-void Graph::write_to_dot_result(){
+void Graph::write_to_dot_result_BFS(){
   std::ofstream FILE;
   std::string path ="graph";
   path.append(std::to_string(Graph::times_graph_printed));

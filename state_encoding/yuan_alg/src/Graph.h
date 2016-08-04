@@ -36,11 +36,12 @@ public:
   void build_test_graph();
   void write_to_dot();
   void write_to_dot_ud();
-  void write_to_dot_result();
+  void write_to_dot_result_BFS();
   void write_to_dot_result_DFS();
   void delete_min_edges();
   void encode_BFS();
   void encode_DFS();
+  void choose_best_encoding();
 
 
 private:
@@ -48,7 +49,6 @@ private:
     std::vector< std::vector<int> > weights;
     std::vector<Path*> paths;
     Path* getShortestPathToSelf(Node* n);
-
     static int times_graph_printed;
 
     struct Code{
