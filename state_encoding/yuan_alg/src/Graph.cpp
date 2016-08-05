@@ -35,11 +35,34 @@ void Graph::choose_best_encoding(){
   for(Node *n : vertices){
     unsigned long long enc1=n->enc1;
     unsigned long long enc2=n->enc2;
+    for(Node * a: n->adj){
+      int dif1=0;
+      int dif2=0;
+      unsigned int i =0;
+      unsigned long long enc12=a->enc1;
+      unsigned long long enc22=a->enc2;
+      while(i<numFlipFlops){
+        if(  ((enc1>>i)&1) != ((enc12>>i)&1)  ){
+          dif1++;
+        }
+        if(  ((enc2>>i)&1) != ((enc22>>i)&1)  ){
+          dif2++;
+        }
+        i++;
+      }
+      //std::cout<<dif1<<" "<<dif2<<std::endl;
+      num_bit_flips_BFS+=dif1;
+      num_bit_flips_DFS+=dif2;
+      num_bit_flips_BFS_weighted+=dif1*weights[n->val][a->val];
+      num_bit_flips_DFS_weighted+=dif2*weights[n->val][a->val];
 
-    //calculate the bit flips here
+
+
+    }
+
   }
-
-
+  std::cout<<"Bit flips BFS: Unweighted: "<<num_bit_flips_BFS<<" Weighted: "<<num_bit_flips_BFS_weighted<<std::endl;
+  std::cout<<"Bit flips DFS: Unweighted: "<<num_bit_flips_DFS<<" Weighted: "<<num_bit_flips_DFS_weighted<<std::endl;
 }
 
 void Graph::encode_DFS(){
@@ -463,10 +486,7 @@ void Graph::write_to_dot_ud(){
 
 void Graph::write_to_dot_result_BFS(){
   std::ofstream FILE;
-  std::string path ="graph";
-  path.append(std::to_string(Graph::times_graph_printed));
-  Graph::times_graph_printed++;
-  path.append(".dot");
+  std::string path ="BFS.dot";
   FILE.open(path);
   FILE<<"digraph fsm {\n";
   for(Node* n : vertices){
@@ -493,10 +513,7 @@ void Graph::write_to_dot_result_BFS(){
 
 void Graph::write_to_dot_result_DFS(){
   std::ofstream FILE;
-  std::string path ="graph";
-  path.append(std::to_string(Graph::times_graph_printed));
-  Graph::times_graph_printed++;
-  path.append(".dot");
+  std::string path ="DFS.dot";
   FILE.open(path);
   FILE<<"digraph fsm {\n";
   for(Node* n : vertices){
