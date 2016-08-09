@@ -25,21 +25,21 @@ Graph::Graph(int size){
 
   //test graph
   weights[0][1]=1;
-  weights[1][9]=3;
-  weights[9][2]=3;
-  weights[1][2]=5;
+  weights[1][9]=5;
+  weights[9][2]=5;
+  weights[1][2]=9;
   weights[2][1]=1;
-  weights[2][3]=8;
-  weights[3][5]=2;
-  weights[3][4]=3;
-  weights[5][4]=1;
+  weights[2][3]=13;
+  weights[3][5]=8;
+  weights[3][4]=5;
+  weights[5][4]=2;
   weights[5][6]=1;
   weights[5][7]=5;
   weights[4][8]=3;
   weights[8][7]=3;
   weights[4][1]=4;
   weights[6][1]=1;
-  weights[7][1]=6;
+  weights[7][1]=8;
 
 
 
