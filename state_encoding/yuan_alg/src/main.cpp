@@ -27,7 +27,13 @@ int main(){
   g.write_to_dot_result_BFS();
   g.encode_DFS();
   g.write_to_dot_result_DFS();
+  g.encode_seq();
+  g.write_to_dot_result_seq();
+  g.encode_one_hot();
+  g.write_to_dot_result_oh();
   g.choose_best_encoding();
+
+
 
 
 

@@ -23,6 +23,8 @@ public:
     bool in_path;
     unsigned long long enc1;
     unsigned long long enc2;
+    unsigned long long enc3;
+    unsigned long long enc4;
     Node(int val_){val=val_;}
 
   };
@@ -38,9 +40,13 @@ public:
   void write_to_dot_ud();
   void write_to_dot_result_BFS();
   void write_to_dot_result_DFS();
+  void write_to_dot_result_seq();
+  void write_to_dot_result_oh();
   void delete_min_edges();
   void encode_BFS();
   void encode_DFS();
+  void encode_seq();
+  void encode_one_hot();
   void choose_best_encoding();
 
 

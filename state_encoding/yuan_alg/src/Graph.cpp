@@ -48,19 +48,23 @@ Graph::Graph(int size){
 void Graph::choose_best_encoding(){
   int num_bit_flips_BFS=0;
   int num_bit_flips_DFS=0;
+  int num_bit_flips_seq=0;
   int num_bit_flips_BFS_weighted=0;
   int num_bit_flips_DFS_weighted=0;
-
+  int num_bit_flips_seq_weighted=0;
 
   for(Node *n : vertices){
     unsigned long long enc1=n->enc1;
     unsigned long long enc2=n->enc2;
+    unsigned long long enc3=n->enc3;
     for(Node * a: n->adj){
       int dif1=0;
       int dif2=0;
+      int dif3=0;
       unsigned int i =0;
       unsigned long long enc12=a->enc1;
       unsigned long long enc22=a->enc2;
+      unsigned long long enc32=a->enc3;
       while(i<numFlipFlops){
         if(  ((enc1>>i)&1) != ((enc12>>i)&1)  ){
           dif1++;
@@ -68,13 +72,18 @@ void Graph::choose_best_encoding(){
         if(  ((enc2>>i)&1) != ((enc22>>i)&1)  ){
           dif2++;
         }
+        if(  ((enc3>>i)&1) != ((enc32>>i)&1)  ){
+          dif3++;
+        }
         i++;
       }
       //std::cout<<dif1<<" "<<dif2<<std::endl;
       num_bit_flips_BFS+=dif1;
       num_bit_flips_DFS+=dif2;
+      num_bit_flips_seq+=dif3;
       num_bit_flips_BFS_weighted+=dif1*weights[n->val][a->val];
       num_bit_flips_DFS_weighted+=dif2*weights[n->val][a->val];
+      num_bit_flips_seq_weighted+=dif3*weights[n->val][a->val];
 
 
 
@@ -83,6 +92,20 @@ void Graph::choose_best_encoding(){
   }
   std::cout<<"Bit flips BFS: Unweighted: "<<num_bit_flips_BFS<<" Weighted: "<<num_bit_flips_BFS_weighted<<std::endl;
   std::cout<<"Bit flips DFS: Unweighted: "<<num_bit_flips_DFS<<" Weighted: "<<num_bit_flips_DFS_weighted<<std::endl;
+  std::cout<<"Bit flips deq: Unweighted: "<<num_bit_flips_seq<<" Weighted: "<<num_bit_flips_seq_weighted<<std::endl;
+}
+
+void Graph::encode_seq(){
+  for(Node* n : vertices){
+    n->enc3=n->val;
+  }
+}
+void Graph::encode_one_hot(){
+  unsigned long long code = 1;
+  for(Node* n : vertices){
+    n->enc4=code;
+    code<<=1;
+  }
 }
 
 void Graph::encode_DFS(){
@@ -560,6 +583,57 @@ void Graph::write_to_dot_result_DFS(){
 
 }
 
+void Graph::write_to_dot_result_seq(){
+  std::ofstream FILE;
+  std::string path ="seq.dot";
+  FILE.open(path);
+  FILE<<"digraph fsm {\n";
+  for(Node* n : vertices){
+    for(Node* adj : n->adj){
+      FILE<<"\""<<(n->val)<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->enc3) & (1<<i))>>i;
+        FILE<<x;
+      }
+      FILE<<")\" -> \""<<adj->val<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((adj->enc3) & (1<<i))>>i;
+        FILE<<x;
+      }
+
+
+      FILE<<")\";\n";
+    }
+  }
+  FILE<<"}";
+  FILE.close();
+}
+
+void Graph::write_to_dot_result_oh(){
+  std::ofstream FILE;
+  std::string path ="oh.dot";
+  FILE.open(path);
+  FILE<<"digraph fsm {\n";
+  for(Node* n : vertices){
+    for(Node* adj : n->adj){
+      FILE<<"\""<<(n->val)<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->enc4) & (1<<i))>>i;
+        FILE<<x;
+      }
+      FILE<<")\" -> \""<<adj->val<<"\\n(";
+      for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((adj->enc4) & (1<<i))>>i;
+        FILE<<x;
+      }
+
+
+      FILE<<")\";\n";
+    }
+  }
+  FILE<<"}";
+  FILE.close();
+}
 void Graph::insertEdge(int startVal, int endVal){
   Node * ns = vertices[startVal];
 
