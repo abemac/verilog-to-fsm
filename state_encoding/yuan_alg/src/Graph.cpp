@@ -19,7 +19,7 @@ Graph::Graph(int size){
   for(unsigned int i=0;i<weights.size();i++){
     weights[i] = std::vector<int>(size);
     for(unsigned int j =0;j<weights[i].size();j++){
-      weights[i][j] =1; //FOR NOW
+      weights[i][j] =0; //FOR NOW
     }
   }
 
@@ -113,7 +113,7 @@ void Graph::encode_DFS(){
   vertices[loc]->visited=true;
   vertices[loc]->enc2=0;
   vertices[loc]->visited=true;
-  allCodes[loc]->used=true;
+  allCodes[0]->used=true;
 
   while(stack.size()!=0){
     Node * n = stack.back();
@@ -170,7 +170,7 @@ void Graph::encode_BFS(){
   vertices[loc]->visited=true;
   vertices[loc]->enc1=0;
   vertices[loc]->visited=true;
-  allCodes[loc]->used=true;
+  allCodes[0]->used=true;
 
   while(queue.size()!=0){
     Node * n = queue.front();
