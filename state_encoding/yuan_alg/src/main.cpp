@@ -12,7 +12,7 @@ int main(){
   g.build_test_graph();
   g.write_to_dot();
   std::vector<Path*>* paths= g.elementary_paths();
-  std::sort(paths->begin(),paths->end(),Path::lessThan);
+  //std::sort(paths->begin(),paths->end(),Path::lessThan);
   for(Path *p : *paths){
     std::cout<<"Path: {";
     for(int i : p->path){

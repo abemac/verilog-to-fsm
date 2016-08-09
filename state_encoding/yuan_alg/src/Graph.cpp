@@ -322,12 +322,14 @@ void Graph::delete_min_edges(){
               if(del_from == (vertices[del_from]->adj_mod)[j]->par_mod[k]->val){
                 (vertices[del_from]->adj_mod)[j]->par_mod.erase(vertices[del_from]->adj_mod[j]->par_mod.begin()+k);
                 deleted3=true;
+                std::cout<<"Deleted "<<del_from<<" "<<del_to<<std::endl;
               }
             }
 
             (vertices[del_from]->adj_mod).erase(vertices[del_from]->adj_mod.begin()+j);
             deleted2=true;
             deleted[del_from][del_to]=true;
+            //deleted[del_to][del_from]=true;
 
           }
         }
