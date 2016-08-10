@@ -49,22 +49,27 @@ void Graph::choose_best_encoding(){
   int num_bit_flips_BFS=0;
   int num_bit_flips_DFS=0;
   int num_bit_flips_seq=0;
+  int num_bit_flips_oh=0;
   int num_bit_flips_BFS_weighted=0;
   int num_bit_flips_DFS_weighted=0;
   int num_bit_flips_seq_weighted=0;
+  int num_bit_flips_oh_weighted=0;
 
   for(Node *n : vertices){
     unsigned long long enc1=n->enc1;
     unsigned long long enc2=n->enc2;
     unsigned long long enc3=n->enc3;
+    unsigned long long enc4=n->enc4;
     for(Node * a: n->adj){
       int dif1=0;
       int dif2=0;
       int dif3=0;
+      int dif4=0;
       unsigned int i =0;
       unsigned long long enc12=a->enc1;
       unsigned long long enc22=a->enc2;
       unsigned long long enc32=a->enc3;
+      unsigned long long enc42=a->enc4;
       while(i<numFlipFlops){
         if(  ((enc1>>i)&1) != ((enc12>>i)&1)  ){
           dif1++;
@@ -75,15 +80,20 @@ void Graph::choose_best_encoding(){
         if(  ((enc3>>i)&1) != ((enc32>>i)&1)  ){
           dif3++;
         }
+        if(  ((enc4>>i)&1) != ((enc42>>i)&1)  ){
+          dif4++;
+        }
         i++;
       }
       //std::cout<<dif1<<" "<<dif2<<std::endl;
       num_bit_flips_BFS+=dif1;
       num_bit_flips_DFS+=dif2;
       num_bit_flips_seq+=dif3;
+      num_bit_flips_oh+=dif4;
       num_bit_flips_BFS_weighted+=dif1*weights[n->val][a->val];
       num_bit_flips_DFS_weighted+=dif2*weights[n->val][a->val];
       num_bit_flips_seq_weighted+=dif3*weights[n->val][a->val];
+      num_bit_flips_oh_weighted+=dif4*weights[n->val][a->val];
 
 
 
@@ -92,7 +102,8 @@ void Graph::choose_best_encoding(){
   }
   std::cout<<"Bit flips BFS: Unweighted: "<<num_bit_flips_BFS<<" Weighted: "<<num_bit_flips_BFS_weighted<<std::endl;
   std::cout<<"Bit flips DFS: Unweighted: "<<num_bit_flips_DFS<<" Weighted: "<<num_bit_flips_DFS_weighted<<std::endl;
-  std::cout<<"Bit flips deq: Unweighted: "<<num_bit_flips_seq<<" Weighted: "<<num_bit_flips_seq_weighted<<std::endl;
+  std::cout<<"Bit flips seq: Unweighted: "<<num_bit_flips_seq<<" Weighted: "<<num_bit_flips_seq_weighted<<std::endl;
+  std::cout<<"Bit flips one-hot: Unweighted: "<<num_bit_flips_oh<<" Weighted: "<<num_bit_flips_oh_weighted<<std::endl;
 }
 
 void Graph::encode_seq(){
@@ -241,6 +252,13 @@ void Graph::createCodeVector(){
     numFlipFlops++;
     count<<=1;//multiply by two
   }
+
+  // while(numFlipFlops<vertices.size()){
+  //   numFlipFlops++;
+  //   count<<=1;//multiply by two
+  // }
+
+
 
   usedCodes=std::vector<bool>(count);
   for(unsigned long long j=0;j<usedCodes.size();j++){
@@ -617,15 +635,15 @@ void Graph::write_to_dot_result_oh(){
   for(Node* n : vertices){
     for(Node* adj : n->adj){
       FILE<<"\""<<(n->val)<<"\\n(";
-      for(int i = numFlipFlops-1; i>=0;i--){
-        unsigned int x = ((n->enc4) & (1<<i))>>i;
+      //for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x = ((n->enc4) )/*& (1<<i))>>i*/;
         FILE<<x;
-      }
+    //  }
       FILE<<")\" -> \""<<adj->val<<"\\n(";
-      for(int i = numFlipFlops-1; i>=0;i--){
-        unsigned int x = ((adj->enc4) & (1<<i))>>i;
-        FILE<<x;
-      }
+    //  for(int i = numFlipFlops-1; i>=0;i--){
+        unsigned int x2 = (adj->enc4) /*& (1<<i))>>i*/;
+        FILE<<x2;
+    //  }
 
 
       FILE<<")\";\n";
